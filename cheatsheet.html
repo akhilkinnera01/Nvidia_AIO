@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCP-AIO Exam Cheat Sheet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #000;
+            background: #fff;
+            line-height: 1.4;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #76b900;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            break-inside: avoid;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #238636;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        code {
+            background: #f6f8fa;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+            display: block;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .comment {
+            color: #6e7781;
+            font-style: italic;
+        }
+
+        .warning {
+            background: #fff8c5;
+            padding: 10px;
+            border-left: 5px solid #d4a72c;
+            margin-top: 10px;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                font-size: 11px;
+            }
+
+            .grid {
+                display: block;
+                column-count: 2;
+                column-gap: 20px;
+            }
+
+            .section {
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🚀 NVIDIA NCP-AIO Exam Cheat Sheet</h1>
+
+    <div class="grid">
+        <div class="section">
+            <h3>GPU Management (nvidia-smi)</h3>
+            <code>nvidia-smi -L <span class="comment"># List GPUs & UUIDs</span></code>
+            <code>nvidia-smi -q -d MEMORY <span class="comment"># Query specific info</span></code>
+            <code>nvidia-smi topo -m <span class="comment"># Check topology (NVLink)</span></code>
+            <code>nvidia-smi dmon <span class="comment"># Monitor device stats</span></code>
+            <code>nvidia-smi -r <span class="comment"># Reset GPU (requires admin)</span></code>
+        </div>
+
+        <div class="section">
+            <h3>MIG (A100/H100) Configuration</h3>
+            <code>nvidia-smi -i 0 -mig 1 <span class="comment"># Enable MIG mode</span></code>
+            <code>nvidia-smi mig -lgip <span class="comment"># List GPU profiles</span></code>
+            <code>nvidia-smi mig -cgi 19,19 <span class="comment"># Create GI (e.g. 1g.5gb)</span></code>
+            <code>nvidia-smi mig -cci <span class="comment"># Create CIs on GIs</span></code>
+            <code>nvidia-smi mig -dgi <span class="comment"># Destroy all GIs</span></code>
+            <div class="warning">
+                <strong>Profiles:</strong><br>
+                1g.5gb (slice=7)<br>
+                2g.10gb (slice=3)<br>
+                3g.20gb (slice=2)<br>
+                7g.40gb (slice=1, full)
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Slurm Workload Manager</h3>
+            <code>sinfo <span class="comment"># Show partition state</span></code>
+            <code>squeue <span class="comment"># List running jobs</span></code>
+            <code>sbatch --gres=gpu:2 job.sh <span class="comment"># Submit batch job</span></code>
+            <code>srun --gres=gpu:1 -p debug --pty bash <span class="comment"># Interactive</span></code>
+            <code>scontrol show job ID <span class="comment"># Inspect specific job</span></code>
+            <code>scontrol update NodeName=n1 State=DRAIN <span class="comment"># Admin</span></code>
+            <div class="warning">
+                <strong>gres.conf:</strong> Must define Name=gpu Type=tesla File=/dev/nvidiaX
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Kubernetes & GPU Operator</h3>
+            <code>kubectl get nodes -o wide <span class="comment"># Check node IP/status</span></code>
+            <code>kubectl get pods -n gpu-operator <span class="comment"># Check operator pods</span></code>
+            <code>kubectl logs -n gpu-operator -l app=nvidia-driver-daemonset</code>
+            <code>kubectl describe node <node> | grep nvidia.com/gpu</code>
+            <div class="warning">
+                <strong>Debug:</strong> Check <em>NVIDIA Device Plugin</em> for resource advertising issues.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>DCGM (Data Center GPU Manager)</h3>
+            <code>dcgmi discovery -l <span class="comment"># List GPUs</span></code>
+            <code>dcgmi diag -r 1 <span class="comment"># Short diagnostic (1 min)</span></code>
+            <code>dcgmi health -c <span class="comment"># Check health watches</span></code>
+            <code>dcgmi stats -g 1 -e <span class="comment"># Enable stats</span></code>
+        </div>
+
+        <div class="section">
+            <h3>Base Command Manager (BCM)</h3>
+            <code>cmsh <span class="comment"># Enter CLI</span></code>
+            <code>[cmsh] device use node001 <span class="comment"># Manage specific node</span></code>
+            <code>[cmsh] softwareimage list <span class="comment"># List images</span></code>
+            <code>[cmsh] monitoring setup <span class="comment"># Config alerts</span></code>
+            <div class="warning">
+                <strong>Head Node:</strong> Provisioning, Monitoring, User Mgmt.<br>
+                <strong>Software Image:</strong> Golden image for stateless nodes.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Docker / NGC</h3>
+            <code>docker login nvcr.io <span class="comment"># Auth with API Key</span></code>
+            <code>docker run --gpus all ... <span class="comment"># Enable all GPUs</span></code>
+            <code>docker run --gpus '"device=1,2"' ... <span class="comment"># specific GPUs</span></code>
+            <div class="warning">
+                <strong>Issue?</strong> Check <code>/etc/docker/daemon.json</code> has default-runtime: nvidia
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Troubleshooting Flow</h3>
+            <p><strong>1. Hardware/Driver:</strong> nvidia-smi (fails? check dmesg, reboot)</p>
+            <p><strong>2. K8s/Docker:</strong> can container see GPU? (docker run --gpus all ...)</p>
+            <p><strong>3. Workload:</strong> OOM? Permissions? (CUDA_VISIBLE_DEVICES match?)</p>
+            <p><strong>4. Performance:</strong> nvidia-smi dmon, dcgmi dmon (Throttling? Power?)</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px; font-size: 0.8em; color: #888;">
+        Generated by Akhil's AI Study Buddy • Good luck on the exam!
+    </div>
+</body>
+
+</html>
