@@ -1,6 +1,6 @@
 const CACHE_NAME = 'ncp-aio-v1';
 const ASSETS_TO_CACHE = [
-    './AIO_Final.html',
+    './index.html',
     './style.css',
     './script.js',
     './flashcards.js',
