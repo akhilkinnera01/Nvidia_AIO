@@ -1,5 +1,6 @@
-const CACHE_NAME = 'ncp-aio-v1';
+const CACHE_NAME = 'ncp-aio-v2';
 const ASSETS_TO_CACHE = [
+    './',
     './index.html',
     './style.css',
     './script.js',
@@ -11,6 +12,7 @@ const ASSETS_TO_CACHE = [
 
 // Install Event - Cache Files
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
@@ -33,7 +35,7 @@ self.addEventListener('fetch', (event) => {
     );
 });
 
-// Activate Event - Clean up old caches
+// Activate Event - Clean up old caches and take control immediately
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
@@ -45,6 +47,6 @@ self.addEventListener('activate', (event) => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
 });
