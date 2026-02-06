@@ -283,6 +283,14 @@ const PRACTICE_QUESTIONS = [
     "What's the backfill scheduler in Slurm?"
 ];
 
+const PHASES = [
+    { label: 'W1', title: 'Foundation & BCM Deep Dive', days: [1, 2, 3, 4, 5, 6, 7], topic: 'Installation & Deployment (31%)', resources: 'Coursera (free), Google Colab (free), Local VMs (optional)', cost: '$0' },
+    { label: 'W2', title: 'Kubernetes, Slurm & Run:ai', days: [8, 9, 10, 11, 12, 13, 14], topic: 'Installation & Administration', resources: 'Local VMs (Minikube, Slurm), Kaggle', cost: '$0' },
+    { label: 'W3', title: 'MIG, DPU, Workloads & NGC', days: [15, 16, 17, 18, 19, 20, 21], topic: 'Admin & Workload Mgmt', resources: '<span style="color:#f0883e;">Vast.ai A100 (~15-20 hrs)</span> — CRITICAL WEEK!', cost: '~$15-20' },
+    { label: 'W4', title: 'Troubleshooting & Optimization', days: [22, 23, 24, 25, 26, 27, 28], topic: 'Troubleshooting (23%)', resources: 'Vast.ai (light ~10 hrs), Local VMs', cost: '~$10-15' },
+    { label: '🎯', title: 'Final Sprint', days: [29, 30, 31], topic: 'EXAM DAY!', resources: 'Review only — no labs!', cost: '$0' }
+];
+
 // Configurable dates with localStorage persistence
 let START_DATE = new Date(localStorage.getItem('ncp-aio-start-date') || '2025-01-29');
 let EXAM_DATE = new Date(localStorage.getItem('ncp-aio-exam-date') || '2025-02-28');
@@ -317,7 +325,14 @@ function launchConfetti() {
 function getCurrentStudyDay() {
     const today = new Date(); today.setHours(0, 0, 0, 0);
     const start = new Date(START_DATE); start.setHours(0, 0, 0, 0);
-    return Math.floor((today - start) / (1000 * 60 * 60 * 24)) + 1;
+    if (today < start) return 0;
+    let bestDay = null, bestDiff = Infinity;
+    for (let d = 1; d <= 31; d++) {
+        const dayDate = getStudyDayDate(d); dayDate.setHours(0, 0, 0, 0);
+        const diff = today - dayDate;
+        if (diff >= 0 && diff < bestDiff) { bestDiff = diff; bestDay = d; }
+    }
+    return bestDay || 32;
 }
 
 function getDaysUntilExam() {
@@ -326,9 +341,24 @@ function getDaysUntilExam() {
     return Math.ceil((exam - today) / (1000 * 60 * 60 * 24));
 }
 
+function getTotalCalendarDays() {
+    const start = new Date(START_DATE); start.setHours(0, 0, 0, 0);
+    const exam = new Date(EXAM_DATE); exam.setHours(0, 0, 0, 0);
+    return Math.max(1, Math.round((exam - start) / (1000 * 60 * 60 * 24)) + 1);
+}
+
+function getStudyDayDate(dayNum) {
+    const totalCalDays = getTotalCalendarDays();
+    const dayIndex = totalCalDays === 1 ? 0 : Math.round((dayNum - 1) * (totalCalDays - 1) / 30);
+    const date = new Date(START_DATE);
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + dayIndex);
+    return date;
+}
+
 function formatDate(date) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const months = ['Jan', 'Feb'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}`;
 }
 
@@ -339,20 +369,22 @@ function getSubtaskKey(day, index) { return `${day}-${index}`; }
 function renderDayCard(dayNum) {
     const data = STUDY_DATA[dayNum];
     const progress = loadProgress();
-    const currentDay = getCurrentStudyDay();
     const completedCount = data.subtasks.filter((_, i) => progress[getSubtaskKey(dayNum, i)]).length;
     const totalCount = data.subtasks.length;
     const allComplete = completedCount === totalCount;
+    const dateObj = getStudyDayDate(dayNum);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const dayDate = new Date(dateObj); dayDate.setHours(0, 0, 0, 0);
     let stateClass = '';
-    if (dayNum === currentDay) stateClass = 'today';
+    if (dayDate.getTime() === today.getTime()) stateClass = 'today';
     else if (allComplete) stateClass = 'all-complete';
-    else if (dayNum < currentDay) stateClass = 'past';
-    const dateObj = new Date(START_DATE); dateObj.setDate(dateObj.getDate() + dayNum - 1);
+    else if (dayDate < today) stateClass = 'past';
     const shortDate = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`;
+    const formattedDate = formatDate(dateObj);
     return `<div class="day-card ${stateClass}" data-day="${dayNum}">
                 <div class="day-header" onclick="toggleDay(${dayNum})">
                     <div class="day-number">${dayNum}<span class="date-small">${shortDate}</span></div>
-                    <div class="day-title-area"><h4>${data.title}</h4><div class="day-summary">${data.date}</div></div>
+                    <div class="day-title-area"><h4>${data.title}</h4><div class="day-summary">${formattedDate}</div></div>
                     <div class="day-progress"><div class="day-progress-bar"><div class="day-progress-fill" style="width: ${(completedCount / totalCount) * 100}%"></div></div><span>${completedCount}/${totalCount}</span></div>
                     <div class="day-tags">${data.tags.map(t => `<span class="tag ${t}">${t}</span>`).join('')}</div>
                     <span class="expand-icon">▼</span>
@@ -369,11 +401,22 @@ function renderDayCard(dayNum) {
 }
 
 function renderAllDays() {
-    document.getElementById('week1-days').innerHTML = [1, 2, 3, 4, 5, 6, 7].map(d => renderDayCard(d)).join('');
-    document.getElementById('week2-days').innerHTML = [8, 9, 10, 11, 12, 13, 14].map(d => renderDayCard(d)).join('');
-    document.getElementById('week3-days').innerHTML = [15, 16, 17, 18, 19, 20, 21].map(d => renderDayCard(d)).join('');
-    document.getElementById('week4-days').innerHTML = [22, 23, 24, 25, 26, 27, 28].map(d => renderDayCard(d)).join('');
-    document.getElementById('final-days').innerHTML = [29, 30, 31].map(d => renderDayCard(d)).join('');
+    const container = document.getElementById('schedule-container');
+    container.innerHTML = PHASES.map(phase => {
+        const firstDate = getStudyDayDate(phase.days[0]);
+        const lastDate = getStudyDayDate(phase.days[phase.days.length - 1]);
+        const dateRange = `${formatDate(firstDate)} - ${formatDate(lastDate)}`;
+        return `<section class="week-section">
+            <div class="week-header"><span class="week-number">${phase.label}</span>
+                <div>
+                    <div class="week-title">${phase.title}</div>
+                    <div class="week-dates">${dateRange} &bull; ${phase.topic}</div>
+                </div>
+            </div>
+            <div class="week-lab-req"><strong>🖥️ Resources:</strong> ${phase.resources} &bull; <strong>Cost: ${phase.cost}</strong></div>
+            <div class="day-grid">${phase.days.map(d => renderDayCard(d)).join('')}</div>
+        </section>`;
+    }).join('');
 }
 
 function updateStats() {
@@ -402,9 +445,18 @@ function updateHeader() {
     const currentDay = getCurrentStudyDay();
     document.getElementById('days-left').textContent = Math.max(0, getDaysUntilExam());
     document.getElementById('today-date').textContent = formatDate(new Date());
+    document.getElementById('exam-date-display').textContent = formatDate(EXAM_DATE);
     if (currentDay >= 1 && currentDay <= 31) document.getElementById('today-task').textContent = `Day ${currentDay}: ${STUDY_DATA[currentDay].title}`;
-    else if (currentDay < 1) document.getElementById('today-task').textContent = 'Study starts Jan 29';
+    else if (currentDay < 1) document.getElementById('today-task').textContent = `Study starts ${formatDate(START_DATE)}`;
     else document.getElementById('today-task').textContent = 'Exam complete! 🎉';
+    updateStudyHours();
+}
+
+function updateStudyHours() {
+    const TOTAL_STUDY_HOURS = 93;
+    const totalCalDays = getTotalCalendarDays();
+    const dailyHours = (TOTAL_STUDY_HOURS / totalCalDays).toFixed(1);
+    document.getElementById('daily-hours').textContent = `${dailyHours} hrs`;
 }
 
 function toggleDay(dayNum) { document.querySelector(`.day-card[data-day="${dayNum}"]`).classList.toggle('expanded'); }
@@ -476,8 +528,11 @@ function updateDates() {
     const exam = document.getElementById('examDateInput').value;
     if (start) { START_DATE = new Date(start); localStorage.setItem('ncp-aio-start-date', start); }
     if (exam) { EXAM_DATE = new Date(exam); localStorage.setItem('ncp-aio-exam-date', exam); }
-    renderAllDays(); updateStats(); updateHeader();
-    showToast('📅 Dates updated!', 'success');
+    if (EXAM_DATE <= START_DATE) { showToast('❌ Exam date must be after start date!', 'error'); return; }
+    const totalCalDays = getTotalCalendarDays();
+    const dailyHours = (93 / totalCalDays).toFixed(1);
+    renderAllDays(); updateStats(); updateHeader(); updateExamCountdown();
+    showToast(`📅 Schedule recalculated! ${totalCalDays} days, ~${dailyHours} hrs/day`, 'success');
 }
 
 // Data Export/Import
@@ -617,11 +672,17 @@ function updateExamCountdown() {
 
 function init() {
     renderAllDays(); updateStats(); updateHeader(); updatePomodoroDisplay(); loadNotes(); loadWeakAreas(); loadBudget(); loadRandomQuote(); updateScoreDisplay(); updateExamCountdown();
-    const currentDay = getCurrentStudyDay();
-    if (currentDay >= 1 && currentDay <= 31) {
-        const todayCard = document.querySelector(`.day-card[data-day="${currentDay}"]`);
-        if (todayCard) { todayCard.classList.add('expanded'); setTimeout(() => { todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300); }
+    // Expand all study days scheduled for today
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    let firstTodayCard = null;
+    for (let d = 1; d <= 31; d++) {
+        const dayDate = getStudyDayDate(d); dayDate.setHours(0, 0, 0, 0);
+        if (dayDate.getTime() === today.getTime()) {
+            const card = document.querySelector(`.day-card[data-day="${d}"]`);
+            if (card) { card.classList.add('expanded'); if (!firstTodayCard) firstTodayCard = card; }
+        }
     }
+    if (firstTodayCard) { setTimeout(() => { firstTodayCard.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300); }
     if (window.innerWidth > 1200) { document.getElementById('studyBuddy').classList.add('open'); document.querySelector('.main-layout').classList.add('sidebar-open'); }
     // Request notification permission
     if ('Notification' in window && Notification.permission === 'default') { setTimeout(() => Notification.requestPermission(), 3000); }

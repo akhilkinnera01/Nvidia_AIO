@@ -119,18 +119,18 @@
         <div class="content-area">
             <header>
                 <h1>🎯 NCP-AIO Certification</h1>
-                <p class="subtitle">NVIDIA AI Operations Professional • Exam Feb 28, 2025</p>
+                <p class="subtitle">NVIDIA AI Operations Professional &bull; Exam <span id="exam-date-display">--</span></p>
                 <div class="exam-info">
                     <div class="info-card">
                         <div class="value" id="days-left">--</div>
                         <div class="label">Days Left</div>
                     </div>
                     <div class="info-card">
-                        <div class="value">3 hrs</div>
+                        <div class="value" id="daily-hours">--</div>
                         <div class="label">Daily</div>
                     </div>
                     <div class="info-card">
-                        <div class="value">~93</div>
+                        <div class="value" id="total-hours">~93</div>
                         <div class="label">Total Hrs</div>
                     </div>
                     <div class="info-card">
@@ -190,67 +190,7 @@
                     Sheet</a>
             </div>
 
-            <section class="week-section">
-                <div class="week-header"><span class="week-number">W1</span>
-                    <div>
-                        <div class="week-title">Foundation & BCM Deep Dive</div>
-                        <div class="week-dates">Wed Jan 29 - Tue Feb 4 • Installation & Deployment (31%)</div>
-                    </div>
-                </div>
-                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Coursera (free), Google Colab (free), Local
-                    VMs (optional) • <strong>Cost: $0</strong></div>
-                <div class="day-grid" id="week1-days"></div>
-            </section>
-
-            <section class="week-section">
-                <div class="week-header"><span class="week-number">W2</span>
-                    <div>
-                        <div class="week-title">Kubernetes, Slurm & Run:ai</div>
-                        <div class="week-dates">Wed Feb 5 - Tue Feb 11 • Installation & Administration</div>
-                    </div>
-                </div>
-                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Local VMs (Minikube, Slurm), Kaggle •
-                    <strong>Cost: $0</strong>
-                </div>
-                <div class="day-grid" id="week2-days"></div>
-            </section>
-
-            <section class="week-section">
-                <div class="week-header"><span class="week-number">W3</span>
-                    <div>
-                        <div class="week-title">MIG, DPU, Workloads & NGC</div>
-                        <div class="week-dates">Wed Feb 12 - Tue Feb 18 • Admin & Workload Mgmt</div>
-                    </div>
-                </div>
-                <div class="week-lab-req"><strong>🖥️ Resources:</strong> <span style="color:#f0883e;">Vast.ai A100
-                        (~15-20 hrs)</span> — CRITICAL WEEK! • <strong>Cost: ~$15-20</strong></div>
-                <div class="day-grid" id="week3-days"></div>
-            </section>
-
-            <section class="week-section">
-                <div class="week-header"><span class="week-number">W4</span>
-                    <div>
-                        <div class="week-title">Troubleshooting & Optimization</div>
-                        <div class="week-dates">Wed Feb 19 - Tue Feb 25 • Troubleshooting (23%)</div>
-                    </div>
-                </div>
-                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Vast.ai (light ~10 hrs), Local VMs •
-                    <strong>Cost: ~$10-15</strong>
-                </div>
-                <div class="day-grid" id="week4-days"></div>
-            </section>
-
-            <section class="week-section">
-                <div class="week-header"><span class="week-number">🎯</span>
-                    <div>
-                        <div class="week-title">Final Sprint</div>
-                        <div class="week-dates">Wed Feb 26 - Fri Feb 28 • EXAM DAY!</div>
-                    </div>
-                </div>
-                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Review only — no labs! • <strong>Cost:
-                        $0</strong></div>
-                <div class="day-grid" id="final-days"></div>
-            </section>
+            <div id="schedule-container"></div>
         </div>
         <!-- STUDY BUDDY SIDEBAR -->
         <div class="study-buddy" id="studyBuddy">

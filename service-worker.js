@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ncp-aio-v2';
+const CACHE_NAME = 'ncp-aio-v3';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
