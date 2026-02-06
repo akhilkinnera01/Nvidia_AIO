@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCP-AIO Study Plan | Akhil's 31-Day Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            color: #e6edf3;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #76b900 0%, #1a1a2e 100%);
+            border-radius: 16px;
+            border: 1px solid #76b900;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .subtitle {
+            color: #76b900;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .exam-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .info-card {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .info-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #76b900;
+        }
+        
+        .info-card .label {
+            font-size: 0.75rem;
+            color: #8b949e;
+        }
+        
+        #today-indicator {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .progress-section {
+            background: #21262d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #30363d;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .progress-bar-container {
+            background: #0d1117;
+            border-radius: 10px;
+            height: 24px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #76b900, #9be22d);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .stats-bar {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #30363d;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #76b900;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #8b949e;
+        }
+        
+        .week-section {
+            margin-bottom: 2rem;
+        }
+        
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(90deg, #21262d, transparent);
+            border-left: 4px solid #76b900;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .week-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #76b900;
+        }
+        
+        .week-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+        
+        .week-dates {
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+        
+        .week-lab-req {
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid rgba(248, 81, 73, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .week-lab-req strong {
+            color: #f85149;
+        }
+        
+        .day-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .day-card {
+            background: #21262d;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        
+        .day-card:hover {
+            border-color: #76b900;
+        }
+        
+        .day-card.today {
+            border-color: #f0883e;
+            box-shadow: 0 0 20px rgba(240, 136, 62, 0.2);
+        }
+        
+        .day-card.all-complete {
+            border-color: #238636;
+        }
+        
+        .day-card.past:not(.all-complete) {
+            border-color: #f85149;
+            opacity: 0.8;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: #161b22;
+            cursor: pointer;
+        }
+        
+        .day-number {
+            width: 45px;
+            height: 45px;
+            background: #30363d;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+        
+        .day-number .date-small {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: #8b949e;
+            margin-top: 1px;
+        }
+        
+        .day-card.today .day-number {
+            background: #f0883e;
+        }
+        
+        .day-card.today .day-number .date-small {
+            color: #fff;
+        }
+        
+        .day-card.all-complete .day-number {
+            background: #238636;
+        }
+        
+        .day-card.past:not(.all-complete) .day-number {
+            background: #f85149;
+        }
+        
+        .day-title-area {
+            flex: 1;
+        }
+        
+        .day-title-area h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .day-title-area .day-summary {
+            color: #8b949e;
+            font-size: 0.8rem;
+        }
+        
+        .day-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+        
+        .day-progress-bar {
+            width: 60px;
+            height: 6px;
+            background: #0d1117;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .day-progress-fill {
+            height: 100%;
+            background: #76b900;
+            transition: width 0.3s;
+        }
+        
+        .day-card.all-complete .day-progress-fill {
+            background: #238636;
+        }
+        
+        .day-tags {
+            display: flex;
+            gap: 0.4rem;
+        }
+        
+        .tag {
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .tag.theory { background: #1f6feb; color: #fff; }
+        .tag.lab { background: #a371f7; color: #fff; }
+        .tag.review { background: #f0883e; color: #fff; }
+        .tag.exam { background: #f85149; color: #fff; }
+        .tag.free { background: #238636; color: #fff; }
+        .tag.paid { background: #da3633; color: #fff; }
+        
+        .day-content {
+            padding: 0 1.25rem 1.25rem;
+            display: none;
+        }
+        
+        .day-card.expanded .day-content {
+            display: block;
+        }
+        
+        .expand-icon {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+            color: #8b949e;
+        }
+        
+        .day-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        
+        .subtasks {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .subtask {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #30363d;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .subtask:last-child {
+            border-bottom: none;
+        }
+        
+        .subtask:hover {
+            background: rgba(118, 185, 0, 0.05);
+            margin: 0 -0.5rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            border-radius: 6px;
+        }
+        
+        .subtask-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #30363d;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s;
+        }
+        
+        .subtask.completed .subtask-checkbox {
+            background: #238636;
+            border-color: #238636;
+        }
+        
+        .subtask-checkbox::after {
+            content: '✓';
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            opacity: 0;
+        }
+        
+        .subtask.completed .subtask-checkbox::after {
+            opacity: 1;
+        }
+        
+        .subtask-content {
+            flex: 1;
+        }
+        
+        .subtask-title {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .subtask.completed .subtask-title {
+            text-decoration: line-through;
+            color: #8b949e;
+        }
+        
+        .subtask-detail {
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
+        
+        .subtask-type {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .subtask-type.theory { background: rgba(31, 111, 235, 0.2); color: #58a6ff; }
+        .subtask-type.lab { background: rgba(163, 113, 247, 0.2); color: #a371f7; }
+        .subtask-type.review { background: rgba(240, 136, 62, 0.2); color: #f0883e; }
+        
+        .lab-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #21262d 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #f85149;
+        }
+        
+        .lab-section h2 {
+            color: #f85149;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .budget-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .budget-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #30363d;
+        }
+        
+        .budget-card.free { border-color: #238636; }
+        .budget-card.paid { border-color: #f0883e; }
+        
+        .budget-card .amount {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .budget-card.free .amount { color: #238636; }
+        .budget-card.paid .amount { color: #f0883e; }
+        
+        .budget-card .desc {
+            color: #8b949e;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        
+        .resources-section {
+            background: #21262d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #30363d;
+            margin-bottom: 2rem;
+        }
+        
+        .resources-section h3 {
+            margin-bottom: 1rem;
+            color: #76b900;
+            font-size: 1.1rem;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #0d1117;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .resource-icon {
+            width: 32px;
+            height: 32px;
+            background: #76b900;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .resource-item a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        .resource-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .command-block {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+        }
+        
+        .command-block code {
+            color: #79c0ff;
+            white-space: pre;
+        }
+        
+        .collapse-all-btn {
+            background: #30363d;
+            border: none;
+            color: #8b949e;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .collapse-all-btn:hover {
+            background: #3d444d;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .day-header {
+                flex-wrap: wrap;
+            }
+            
+            .day-tags {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 NCP-AIO Certification</h1>
+            <p class="subtitle">NVIDIA AI Operations Professional • Exam Feb 28, 2025</p>
+            <div class="exam-info">
+                <div class="info-card">
+                    <div class="value" id="days-left">--</div>
+                    <div class="label">Days Left</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">3 hrs</div>
+                    <div class="label">Daily</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">~93</div>
+                    <div class="label">Total Hrs</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">70-75</div>
+                    <div class="label">Questions</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">120</div>
+                    <div class="label">Minutes</div>
+                </div>
+            </div>
+            <div id="today-indicator">
+                📅 Today: <span id="today-date">--</span> | <span id="today-task" style="color: #76b900;">--</span>
+            </div>
+        </header>
+
+        <section class="progress-section">
+            <div class="progress-header">
+                <h3>📊 Overall Progress</h3>
+                <span id="progress-text">0 / 124 subtasks completed</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value" id="days-complete">0/31</div>
+                    <div class="stat-label">Days Done</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="theory-tasks">0</div>
+                    <div class="stat-label">Theory Tasks</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="lab-tasks">0</div>
+                    <div class="stat-label">Lab Tasks</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="review-tasks">0</div>
+                    <div class="stat-label">Review Tasks</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAB RESOURCES -->
+        <section class="lab-section">
+            <h2>🖥️ Lab Resources & Budget (~$35-50 total)</h2>
+            <div class="budget-summary">
+                <div class="budget-card free">
+                    <div class="amount">$0</div>
+                    <div class="desc">Weeks 1-2: Coursera, Colab, Kaggle, Local VMs</div>
+                </div>
+                <div class="budget-card paid">
+                    <div class="amount">~$35-50</div>
+                    <div class="desc">Weeks 3-4: Vast.ai A100 for MIG & DCGM</div>
+                </div>
+            </div>
+        </section>
+
+        <button class="collapse-all-btn" onclick="toggleAllDays()">📂 Expand/Collapse All Days</button>
+
+        <!-- WEEK 1 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W1</span>
+                <div>
+                    <div class="week-title">Foundation & BCM Deep Dive</div>
+                    <div class="week-dates">Wed Jan 29 - Tue Feb 4 • Installation & Deployment (31%)</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Resources:</strong> Coursera (free), Google Colab (free), 2 Local VMs (optional) • <strong>Cost: $0</strong>
+            </div>
+            <div class="day-grid" id="week1-days"></div>
+        </section>
+
+        <!-- WEEK 2 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W2</span>
+                <div>
+                    <div class="week-title">Kubernetes, Slurm & Run:ai</div>
+                    <div class="week-dates">Wed Feb 5 - Tue Feb 11 • Installation & Administration</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Resources:</strong> Local VMs (Minikube, Slurm), Kaggle notebooks • <strong>Cost: $0</strong>
+            </div>
+            <div class="day-grid" id="week2-days"></div>
+        </section>
+
+        <!-- WEEK 3 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W3</span>
+                <div>
+                    <div class="week-title">MIG, DPU, Workloads & NGC</div>
+                    <div class="week-dates">Wed Feb 12 - Tue Feb 18 • Administration & Workload Mgmt</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Resources:</strong> <span style="color:#f0883e;">Vast.ai A100 (~15-20 hrs)</span> — CRITICAL WEEK! • <strong>Cost: ~$15-20</strong>
+            </div>
+            <div class="day-grid" id="week3-days"></div>
+        </section>
+
+        <!-- WEEK 4 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W4</span>
+                <div>
+                    <div class="week-title">Troubleshooting & Optimization</div>
+                    <div class="week-dates">Wed Feb 19 - Tue Feb 25 • Troubleshooting (23%)</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Resources:</strong> Vast.ai (light use ~10 hrs), Local VMs • <strong>Cost: ~$10-15</strong>
+            </div>
+            <div class="day-grid" id="week4-days"></div>
+        </section>
+
+        <!-- FINAL DAYS -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">🎯</span>
+                <div>
+                    <div class="week-title">Final Sprint</div>
+                    <div class="week-dates">Wed Feb 26 - Fri Feb 28 • EXAM DAY!</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Resources:</strong> None — Review only! • <strong>Cost: $0</strong>
+            </div>
+            <div class="day-grid" id="final-days"></div>
+        </section>
+
+        <!-- RESOURCES -->
+        <section class="resources-section">
+            <h3>📚 Essential Resources</h3>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <div class="resource-icon">📄</div>
+                    <div><a href="https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web" target="_blank">Official NCP-AIO Study Guide</a></div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🎓</div>
+                    <div><a href="https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals" target="_blank">Coursera: AI Infrastructure Fundamentals</a></div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📖</div>
+                    <div><a href="https://docs.nvidia.com/datacenter/tesla/mig-user-guide/" target="_blank">NVIDIA MIG User Guide</a></div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📖</div>
+                    <div><a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/" target="_blank">GPU Operator Docs</a></div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📖</div>
+                    <div><a href="https://slurm.schedmd.com/gres.html" target="_blank">Slurm GRES (GPU) Scheduling</a></div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🐳</div>
+                    <div><a href="https://catalog.ngc.nvidia.com/" target="_blank">NGC Container Catalog</a></div>
+                </div>
+            </div>
+            
+            <div class="command-block">
+                <h4 style="color: #76b900; margin-bottom: 0.5rem;">🔥 Must-Know Commands</h4>
+<code># MIG Commands (A100/H100)
+nvidia-smi -i 0 -mig 1              # Enable MIG
+nvidia-smi mig -lgip                # List profiles
+nvidia-smi mig -cgi 9,19,19,19      # Create instances
+nvidia-smi mig -lgi                 # List instances
+
+# DCGM
+dcgmi discovery -l                  # List GPUs
+dcgmi diag -r 1                     # Diagnostics
+
+# Slurm
+sbatch --gres=gpu:2 job.sh          # Submit with GPUs
+squeue / sinfo / scontrol           # Monitor</code>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ============ STUDY PLAN DATA ============
+        const STUDY_DATA = {
+            1: {
+                title: "Exam Blueprint & Environment Setup",
+                date: "Wed, Jan 29",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Read official NCP-AIO study guide", detail: "Download PDF, understand exam domains and weights" },
+                    { type: "theory", title: "Start Coursera course - Module 1", detail: "AI Infrastructure and Operations Fundamentals" },
+                    { type: "lab", title: "Set up Ubuntu VM (optional)", detail: "Install VirtualBox/UTM/Multipass, create Ubuntu 22.04 VM" },
+                    { type: "lab", title: "Install Docker on VM or local", detail: "Run: docker run hello-world to verify" }
+                ]
+            },
+            2: {
+                title: "NVIDIA AI Infrastructure Fundamentals",
+                date: "Thu, Jan 30",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Coursera - Continue Module 1-2", detail: "Data center architecture for AI workloads" },
+                    { type: "theory", title: "Study DGX system architecture", detail: "Understand DGX A100/H100, GPU interconnects" },
+                    { type: "lab", title: "Google Colab: Run nvidia-smi", detail: "Open Colab, run !nvidia-smi, understand output fields" },
+                    { type: "lab", title: "Explore GPU info in Colab", detail: "Check CUDA version, memory, GPU utilization" }
+                ]
+            },
+            3: {
+                title: "Base Command Manager - Architecture",
+                date: "Fri, Jan 31",
+                tags: ["theory", "free"],
+                subtasks: [
+                    { type: "theory", title: "Read BCM documentation overview", detail: "docs.nvidia.com/base-command-manager" },
+                    { type: "theory", title: "Study Base View interface components", detail: "Dashboard, node views, alerts, reports" },
+                    { type: "theory", title: "Understand BCM cluster monitoring", detail: "Health checks, utilization metrics, job tracking" },
+                    { type: "theory", title: "Watch BCM YouTube walkthrough", detail: "Search 'NVIDIA Base Command Manager demo'" }
+                ]
+            },
+            4: {
+                title: "BCM - Node & User Management",
+                date: "Sat, Feb 1",
+                tags: ["theory", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study BCM node categories", detail: "Head nodes, compute nodes, login nodes, management" },
+                    { type: "theory", title: "Learn BCM RBAC model", detail: "Admin, Operator, Viewer roles and permissions" },
+                    { type: "theory", title: "Understand software image management", detail: "Image creation, deployment, versioning" },
+                    { type: "review", title: "Create flashcards for BCM commands", detail: "cmsh commands: device, partition, category, etc." }
+                ]
+            },
+            5: {
+                title: "BCM - Networking & Firmware",
+                date: "Sun, Feb 2",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study BCM network configuration", detail: "Node networking, DPU config, switch management" },
+                    { type: "theory", title: "Learn firmware update workflows", detail: "Patch management, driver updates, image sync" },
+                    { type: "lab", title: "Practice network commands on VM", detail: "ip addr, nmcli, understand bonding concepts" },
+                    { type: "theory", title: "Coursera - Complete Week 1 content", detail: "Finish first week modules and quizzes" }
+                ]
+            },
+            6: {
+                title: "BCM - Troubleshooting & Reporting",
+                date: "Mon, Feb 3",
+                tags: ["theory", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study BCM troubleshooting workflows", detail: "Job failures, node outages, resource bottlenecks" },
+                    { type: "theory", title: "Learn node states in BCM", detail: "UP, DOWN, DRAIN, IDLE, MIXED, ALLOCATED" },
+                    { type: "theory", title: "Understand BCM reporting features", detail: "Usage reports, health dashboards, alerts" },
+                    { type: "review", title: "Create troubleshooting decision tree", detail: "Document: symptom → diagnostic steps → resolution" }
+                ]
+            },
+            7: {
+                title: "Week 1 Review & Mission Control",
+                date: "Tue, Feb 4",
+                tags: ["review", "theory", "free"],
+                subtasks: [
+                    { type: "review", title: "Review all BCM concepts", detail: "Go through notes and flashcards" },
+                    { type: "theory", title: "Introduction to Mission Control toolkit", detail: "Understand deployment automation tools" },
+                    { type: "review", title: "Take Coursera Week 1-2 quizzes", detail: "Test your knowledge, note weak areas" },
+                    { type: "review", title: "Write 1-page BCM summary", detail: "Architecture, key commands, troubleshooting" }
+                ]
+            },
+            8: {
+                title: "Kubernetes on NVIDIA - GPU Operator",
+                date: "Wed, Feb 5",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study GPU Operator architecture", detail: "Components: driver, toolkit, device plugin, DCGM exporter" },
+                    { type: "theory", title: "Read GPU Operator installation docs", detail: "docs.nvidia.com/datacenter/cloud-native/gpu-operator" },
+                    { type: "lab", title: "Install Minikube on local machine", detail: "brew install minikube (Mac) or equivalent" },
+                    { type: "lab", title: "Add NVIDIA Helm repo", detail: "helm repo add nvidia https://nvidia.github.io/gpu-operator" }
+                ]
+            },
+            9: {
+                title: "Kubernetes GPU Scheduling & RBAC",
+                date: "Thu, Feb 6",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study GPU resource requests in pods", detail: "nvidia.com/gpu resource limits and requests" },
+                    { type: "theory", title: "Learn ClusterPolicy CRD", detail: "GPU Operator configuration custom resource" },
+                    { type: "lab", title: "Create namespace and RBAC rules", detail: "kubectl create ns gpu-test, apply RBAC yaml" },
+                    { type: "lab", title: "Write GPU pod spec (syntax practice)", detail: "Create yaml with nvidia.com/gpu: 1 resource" }
+                ]
+            },
+            10: {
+                title: "Slurm Installation & Architecture",
+                date: "Fri, Feb 7",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study Slurm architecture", detail: "slurmctld, slurmd, slurmdbd components" },
+                    { type: "theory", title: "Read Slurm quickstart guide", detail: "slurm.schedmd.com/quickstart.html" },
+                    { type: "lab", title: "Install Slurm on VM", detail: "apt install slurmctld slurmd munge" },
+                    { type: "lab", title: "Create basic slurm.conf", detail: "Configure ClusterName, ControlMachine, partitions" }
+                ]
+            },
+            11: {
+                title: "Slurm GPU Configuration (GRES)",
+                date: "Sat, Feb 8",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study GRES documentation", detail: "slurm.schedmd.com/gres.html - GPU scheduling" },
+                    { type: "theory", title: "Understand gres.conf syntax", detail: "Name, Type, File, Count, AutoDetect options" },
+                    { type: "lab", title: "Configure gres.conf for GPUs", detail: "Name=gpu Type=tesla File=/dev/nvidia[0-1]" },
+                    { type: "lab", title: "Add GresTypes to slurm.conf", detail: "GresTypes=gpu, add Gres to NodeName lines" }
+                ]
+            },
+            12: {
+                title: "Slurm Administration Deep Dive",
+                date: "Sun, Feb 9",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Master Slurm commands", detail: "sbatch, srun, salloc, squeue, sinfo, scontrol, sacct" },
+                    { type: "theory", title: "Study backfill scheduler", detail: "Understand job scheduling algorithms, preemption" },
+                    { type: "lab", title: "Submit test jobs with sbatch", detail: "Create job script, submit, check with squeue" },
+                    { type: "lab", title: "Practice scontrol commands", detail: "scontrol show job, scontrol update, node management" }
+                ]
+            },
+            13: {
+                title: "Run:ai - Architecture & Concepts",
+                date: "Mon, Feb 10",
+                tags: ["theory", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study Run:ai architecture", detail: "Control plane, scheduler, CLI components" },
+                    { type: "theory", title: "Learn Run:ai installation on K8s", detail: "Helm chart deployment process" },
+                    { type: "theory", title: "Understand projects and quotas", detail: "Resource allocation, fairness policies" },
+                    { type: "theory", title: "Watch Run:ai demo videos", detail: "YouTube: Run:ai platform walkthrough" }
+                ]
+            },
+            14: {
+                title: "Week 2 Review & MIG Intro",
+                date: "Tue, Feb 11",
+                tags: ["review", "theory", "free"],
+                subtasks: [
+                    { type: "review", title: "Review K8s GPU Operator concepts", detail: "Components, installation, ClusterPolicy" },
+                    { type: "review", title: "Review Slurm commands", detail: "Create cheat sheet of all key commands" },
+                    { type: "theory", title: "Introduction to MIG technology", detail: "What is MIG, supported GPUs, use cases" },
+                    { type: "lab", title: "Set up Vast.ai account", detail: "Create account, add $5 credit for Week 3" }
+                ]
+            },
+            15: {
+                title: "MIG Configuration Deep Dive",
+                date: "Wed, Feb 12",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Study MIG profiles for A100", detail: "1g.5gb, 2g.10gb, 3g.20gb, 4g.20gb, 7g.40gb" },
+                    { type: "theory", title: "Understand GI and CI concepts", detail: "GPU Instances vs Compute Instances" },
+                    { type: "lab", title: "Rent Vast.ai A100, enable MIG", detail: "nvidia-smi -i 0 -mig 1, then nvidia-smi mig -lgip" },
+                    { type: "lab", title: "Create MIG instances", detail: "nvidia-smi mig -cgi 9,19,19,19 -C" }
+                ]
+            },
+            16: {
+                title: "MIG with Slurm & Kubernetes",
+                date: "Thu, Feb 13",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Study MIG in gres.conf", detail: "Configuring MIG devices for Slurm" },
+                    { type: "theory", title: "Learn MIG with GPU Operator", detail: "MIG strategies: single, mixed" },
+                    { type: "lab", title: "Create/destroy MIG instances", detail: "Practice different profile combinations" },
+                    { type: "lab", title: "Run workload on MIG device", detail: "CUDA_VISIBLE_DEVICES=MIG-xxx python test.py" }
+                ]
+            },
+            17: {
+                title: "BlueField DPU & DOCA Services",
+                date: "Fri, Feb 14",
+                tags: ["theory", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study DPU architecture", detail: "Arm cores, network interfaces, use cases" },
+                    { type: "theory", title: "Learn DOCA SDK basics", detail: "Programming model, services framework" },
+                    { type: "theory", title: "Understand DPU modes", detail: "Embedded host, separated host configurations" },
+                    { type: "theory", title: "Study common DPU troubleshooting", detail: "Firmware issues, network config problems" }
+                ]
+            },
+            18: {
+                title: "NGC Containers - Deployment",
+                date: "Sat, Feb 15",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Explore NGC catalog", detail: "catalog.ngc.nvidia.com - browse containers" },
+                    { type: "theory", title: "Understand NGC authentication", detail: "API key generation, docker login" },
+                    { type: "lab", title: "Login to NGC registry", detail: "docker login nvcr.io with API key" },
+                    { type: "lab", title: "Pull and run PyTorch container", detail: "docker pull nvcr.io/nvidia/pytorch:24.01-py3" }
+                ]
+            },
+            19: {
+                title: "Training Workloads - Slurm & Run:ai",
+                date: "Sun, Feb 16",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Study distributed training concepts", detail: "Multi-GPU, multi-node training patterns" },
+                    { type: "theory", title: "Learn job script best practices", detail: "Environment variables, resource requests" },
+                    { type: "lab", title: "Submit training job via Slurm", detail: "sbatch --gres=gpu:1 train.sh" },
+                    { type: "lab", title: "Monitor GPU with nvidia-smi dmon", detail: "Watch utilization during training" }
+                ]
+            },
+            20: {
+                title: "Inference Workloads - K8s & Triton",
+                date: "Mon, Feb 17",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Study Triton Inference Server", detail: "Architecture, model repository structure" },
+                    { type: "theory", title: "Learn inference scaling strategies", detail: "Horizontal scaling, batching, concurrency" },
+                    { type: "lab", title: "Pull Triton container", detail: "docker pull nvcr.io/nvidia/tritonserver:24.01-py3" },
+                    { type: "lab", title: "Explore Triton model config", detail: "Understand config.pbtxt format" }
+                ]
+            },
+            21: {
+                title: "Week 3 Review",
+                date: "Tue, Feb 18",
+                tags: ["review", "free"],
+                subtasks: [
+                    { type: "review", title: "Review MIG commands", detail: "Create comprehensive MIG cheat sheet" },
+                    { type: "review", title: "Review NGC workflow", detail: "Auth → pull → run → monitor" },
+                    { type: "review", title: "Review DPU/DOCA concepts", detail: "Architecture, modes, troubleshooting" },
+                    { type: "review", title: "Practice questions on workloads", detail: "Slurm job submission, K8s deployments" }
+                ]
+            },
+            22: {
+                title: "DCGM Deep Dive",
+                date: "Wed, Feb 19",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Study DCGM architecture", detail: "Host engine, modules, field groups" },
+                    { type: "theory", title: "Learn DCGM health monitoring", detail: "Health watches, diagnostic levels" },
+                    { type: "lab", title: "Install and run DCGM", detail: "dcgmi discovery -l, dcgmi diag -r 1" },
+                    { type: "lab", title: "Monitor with dcgmi dmon", detail: "Watch real-time GPU metrics" }
+                ]
+            },
+            23: {
+                title: "Docker & Container Troubleshooting",
+                date: "Thu, Feb 20",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Study NVIDIA Container Toolkit", detail: "nvidia-container-runtime configuration" },
+                    { type: "theory", title: "Learn common Docker GPU issues", detail: "Driver mismatch, runtime config, visibility" },
+                    { type: "lab", title: "Simulate container GPU issue", detail: "Misconfigure daemon.json, debug and fix" },
+                    { type: "lab", title: "Practice docker logs troubleshooting", detail: "Identify and resolve GPU visibility issues" }
+                ]
+            },
+            24: {
+                title: "Fabric Manager & NVLink",
+                date: "Fri, Feb 21",
+                tags: ["theory", "lab", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study Fabric Manager service", detail: "Purpose, configuration, common issues" },
+                    { type: "theory", title: "Understand NVLink/NVSwitch topology", detail: "Multi-GPU communication, bandwidth" },
+                    { type: "lab", title: "Check topology with nvidia-smi", detail: "nvidia-smi topo -m (on multi-GPU system)" },
+                    { type: "theory", title: "Learn Fabric Manager troubleshooting", detail: "Log analysis, connectivity issues" }
+                ]
+            },
+            25: {
+                title: "Magnum IO & Storage Performance",
+                date: "Sat, Feb 22",
+                tags: ["theory", "free"],
+                subtasks: [
+                    { type: "theory", title: "Study Magnum IO components", detail: "GPUDirect RDMA, GPUDirect Storage, NCCL" },
+                    { type: "theory", title: "Learn storage optimization for AI", detail: "I/O patterns, bottleneck identification" },
+                    { type: "theory", title: "Understand GPUDirect use cases", detail: "When to use vs staged transfers" },
+                    { type: "theory", title: "Study storage performance metrics", detail: "Throughput, latency, IOPS for AI workloads" }
+                ]
+            },
+            26: {
+                title: "BCM Troubleshooting & NGC Issues",
+                date: "Sun, Feb 23",
+                tags: ["theory", "lab", "paid"],
+                subtasks: [
+                    { type: "theory", title: "Review BCM common issues", detail: "Node provisioning, job scheduling, alerts" },
+                    { type: "theory", title: "Study NGC troubleshooting", detail: "Auth failures, pull errors, runtime issues" },
+                    { type: "lab", title: "Simulate NGC auth failure", detail: "Test with wrong credentials, debug" },
+                    { type: "lab", title: "Practice recovery procedures", detail: "Document and test fix workflows" }
+                ]
+            },
+            27: {
+                title: "Full Review - Installation & Admin",
+                date: "Mon, Feb 24",
+                tags: ["review", "free"],
+                subtasks: [
+                    { type: "review", title: "Review BCM concepts", detail: "Architecture, commands, troubleshooting" },
+                    { type: "review", title: "Review K8s GPU Operator", detail: "Installation, ClusterPolicy, device plugin" },
+                    { type: "review", title: "Review Slurm administration", detail: "All commands, gres.conf, job management" },
+                    { type: "review", title: "Take Udemy practice test #1", detail: "60-70 questions, note weak areas" }
+                ]
+            },
+            28: {
+                title: "Full Review - Workloads & Troubleshooting",
+                date: "Tue, Feb 25",
+                tags: ["review", "free"],
+                subtasks: [
+                    { type: "review", title: "Review MIG configuration", detail: "Commands, profiles, Slurm/K8s integration" },
+                    { type: "review", title: "Review DCGM and monitoring", detail: "Commands, health checks, diagnostics" },
+                    { type: "review", title: "Review troubleshooting workflows", detail: "All decision trees you created" },
+                    { type: "review", title: "Take Udemy practice test #2", detail: "Focus on troubleshooting scenarios" }
+                ]
+            },
+            29: {
+                title: "Weak Areas Deep Dive",
+                date: "Wed, Feb 26",
+                tags: ["review", "free"],
+                subtasks: [
+                    { type: "review", title: "Identify weak areas from tests", detail: "List topics where you scored lowest" },
+                    { type: "review", title: "Re-read relevant documentation", detail: "Focus only on weak areas" },
+                    { type: "review", title: "Create final 1-page cheat sheet", detail: "Key commands, concepts for memory" },
+                    { type: "review", title: "Light practice questions", detail: "10-15 questions on weak topics only" }
+                ]
+            },
+            30: {
+                title: "Light Review & Exam Prep",
+                date: "Thu, Feb 27",
+                tags: ["review", "free"],
+                subtasks: [
+                    { type: "review", title: "Very light review only", detail: "Skim notes, no new material" },
+                    { type: "review", title: "Prepare exam environment", detail: "Quiet room, stable internet, webcam, valid ID" },
+                    { type: "review", title: "Test Certiverse platform", detail: "Check system requirements, do test run" },
+                    { type: "review", title: "Early bedtime!", detail: "Rest well - you've prepared thoroughly" }
+                ]
+            },
+            31: {
+                title: "🏆 EXAM DAY!",
+                date: "Fri, Feb 28",
+                tags: ["exam"],
+                subtasks: [
+                    { type: "review", title: "Light breakfast, stay calm", detail: "Don't cram - trust your preparation" },
+                    { type: "review", title: "Start exam on time", detail: "120 minutes, 70-75 questions" },
+                    { type: "review", title: "Read each question carefully", detail: "~1.5 min per question, flag difficult ones" },
+                    { type: "review", title: "PASS THE EXAM! 🎉", detail: "You've got this, Akhil!" }
+                ]
+            }
+        };
+
+        // ============ DATE UTILITIES ============
+        const START_DATE = new Date('2025-01-29');
+        const EXAM_DATE = new Date('2025-02-28');
+        
+        function getCurrentStudyDay() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const start = new Date(START_DATE);
+            start.setHours(0, 0, 0, 0);
+            const diffTime = today - start;
+            return Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        }
+        
+        function getDaysUntilExam() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const exam = new Date(EXAM_DATE);
+            exam.setHours(0, 0, 0, 0);
+            return Math.ceil((exam - today) / (1000 * 60 * 60 * 24));
+        }
+        
+        function formatDate(date) {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const months = ['Jan', 'Feb'];
+            return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}`;
+        }
+
+        // ============ PROGRESS MANAGEMENT ============
+        function loadProgress() {
+            const saved = localStorage.getItem('ncp-aio-subtasks-v3');
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        function saveProgress(progress) {
+            localStorage.setItem('ncp-aio-subtasks-v3', JSON.stringify(progress));
+        }
+
+        function getSubtaskKey(day, index) {
+            return `${day}-${index}`;
+        }
+
+        // ============ RENDER FUNCTIONS ============
+        function renderDayCard(dayNum) {
+            const data = STUDY_DATA[dayNum];
+            const progress = loadProgress();
+            const currentDay = getCurrentStudyDay();
+            
+            // Count completed subtasks
+            const completedCount = data.subtasks.filter((_, i) => 
+                progress[getSubtaskKey(dayNum, i)]
+            ).length;
+            const totalCount = data.subtasks.length;
+            const allComplete = completedCount === totalCount;
+            
+            // Determine card state
+            let stateClass = '';
+            if (dayNum === currentDay) stateClass = 'today';
+            else if (allComplete) stateClass = 'all-complete';
+            else if (dayNum < currentDay) stateClass = 'past';
+            
+            // Get short date
+            const dateObj = new Date(START_DATE);
+            dateObj.setDate(dateObj.getDate() + dayNum - 1);
+            const shortDate = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`;
+            
+            return `
+                <div class="day-card ${stateClass}" data-day="${dayNum}">
+                    <div class="day-header" onclick="toggleDay(${dayNum})">
+                        <div class="day-number">
+                            ${dayNum}
+                            <span class="date-small">${shortDate}</span>
+                        </div>
+                        <div class="day-title-area">
+                            <h4>${data.title}</h4>
+                            <div class="day-summary">${data.date}</div>
+                        </div>
+                        <div class="day-progress">
+                            <div class="day-progress-bar">
+                                <div class="day-progress-fill" style="width: ${(completedCount/totalCount)*100}%"></div>
+                            </div>
+                            <span>${completedCount}/${totalCount}</span>
+                        </div>
+                        <div class="day-tags">
+                            ${data.tags.map(t => `<span class="tag ${t}">${t}</span>`).join('')}
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="day-content">
+                        <ul class="subtasks">
+                            ${data.subtasks.map((task, i) => {
+                                const isComplete = progress[getSubtaskKey(dayNum, i)];
+                                return `
+                                    <li class="subtask ${isComplete ? 'completed' : ''}" 
+                                        onclick="toggleSubtask(${dayNum}, ${i}, event)">
+                                        <div class="subtask-checkbox"></div>
+                                        <div class="subtask-content">
+                                            <div class="subtask-title">${task.title}</div>
+                                            <div class="subtask-detail">${task.detail}</div>
+                                        </div>
+                                        <span class="subtask-type ${task.type}">${task.type}</span>
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAllDays() {
+            // Week 1: Days 1-7
+            document.getElementById('week1-days').innerHTML = 
+                [1,2,3,4,5,6,7].map(d => renderDayCard(d)).join('');
+            
+            // Week 2: Days 8-14
+            document.getElementById('week2-days').innerHTML = 
+                [8,9,10,11,12,13,14].map(d => renderDayCard(d)).join('');
+            
+            // Week 3: Days 15-21
+            document.getElementById('week3-days').innerHTML = 
+                [15,16,17,18,19,20,21].map(d => renderDayCard(d)).join('');
+            
+            // Week 4: Days 22-28
+            document.getElementById('week4-days').innerHTML = 
+                [22,23,24,25,26,27,28].map(d => renderDayCard(d)).join('');
+            
+            // Final: Days 29-31
+            document.getElementById('final-days').innerHTML = 
+                [29,30,31].map(d => renderDayCard(d)).join('');
+        }
+
+        function updateStats() {
+            const progress = loadProgress();
+            let totalComplete = 0;
+            let totalSubtasks = 0;
+            let daysComplete = 0;
+            let theoryComplete = 0;
+            let labComplete = 0;
+            let reviewComplete = 0;
+            
+            for (let day = 1; day <= 31; day++) {
+                const data = STUDY_DATA[day];
+                let dayComplete = true;
+                
+                data.subtasks.forEach((task, i) => {
+                    totalSubtasks++;
+                    if (progress[getSubtaskKey(day, i)]) {
+                        totalComplete++;
+                        if (task.type === 'theory') theoryComplete++;
+                        if (task.type === 'lab') labComplete++;
+                        if (task.type === 'review') reviewComplete++;
+                    } else {
+                        dayComplete = false;
+                    }
+                });
+                
+                if (dayComplete) daysComplete++;
+            }
+            
+            const percent = Math.round((totalComplete / totalSubtasks) * 100);
+            
+            document.getElementById('progress-bar').style.width = percent + '%';
+            document.getElementById('progress-bar').textContent = percent + '%';
+            document.getElementById('progress-text').textContent = 
+                `${totalComplete} / ${totalSubtasks} subtasks completed`;
+            document.getElementById('days-complete').textContent = `${daysComplete}/31`;
+            document.getElementById('theory-tasks').textContent = theoryComplete;
+            document.getElementById('lab-tasks').textContent = labComplete;
+            document.getElementById('review-tasks').textContent = reviewComplete;
+        }
+
+        function updateHeader() {
+            const currentDay = getCurrentStudyDay();
+            const daysLeft = getDaysUntilExam();
+            
+            document.getElementById('days-left').textContent = Math.max(0, daysLeft);
+            document.getElementById('today-date').textContent = formatDate(new Date());
+            
+            if (currentDay >= 1 && currentDay <= 31) {
+                document.getElementById('today-task').textContent = 
+                    `Day ${currentDay}: ${STUDY_DATA[currentDay].title}`;
+            } else if (currentDay < 1) {
+                document.getElementById('today-task').textContent = 'Study starts Jan 29';
+            } else {
+                document.getElementById('today-task').textContent = 'Exam complete! 🎉';
+            }
+        }
+
+        // ============ EVENT HANDLERS ============
+        function toggleDay(dayNum) {
+            const card = document.querySelector(`.day-card[data-day="${dayNum}"]`);
+            card.classList.toggle('expanded');
+        }
+
+        function toggleSubtask(dayNum, index, event) {
+            event.stopPropagation();
+            
+            const progress = loadProgress();
+            const key = getSubtaskKey(dayNum, index);
+            progress[key] = !progress[key];
+            saveProgress(progress);
+            
+            // Re-render just this day and update stats
+            const oldCard = document.querySelector(`.day-card[data-day="${dayNum}"]`);
+            const wasExpanded = oldCard.classList.contains('expanded');
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = renderDayCard(dayNum);
+            const newCard = tempDiv.firstElementChild;
+            
+            if (wasExpanded) newCard.classList.add('expanded');
+            oldCard.replaceWith(newCard);
+            
+            updateStats();
+        }
+
+        function toggleAllDays() {
+            const cards = document.querySelectorAll('.day-card');
+            const anyExpanded = Array.from(cards).some(c => c.classList.contains('expanded'));
+            
+            cards.forEach(card => {
+                if (anyExpanded) {
+                    card.classList.remove('expanded');
+                } else {
+                    card.classList.add('expanded');
+                }
+            });
+        }
+
+        // ============ INITIALIZATION ============
+        function init() {
+            renderAllDays();
+            updateStats();
+            updateHeader();
+            
+            // Auto-expand today's card
+            const currentDay = getCurrentStudyDay();
+            if (currentDay >= 1 && currentDay <= 31) {
+                const todayCard = document.querySelector(`.day-card[data-day="${currentDay}"]`);
+                if (todayCard) {
+                    todayCard.classList.add('expanded');
+                    setTimeout(() => {
+                        todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

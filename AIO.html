@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCP-AIO Study Plan | Akhil's 31-Day Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            color: #e6edf3;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #76b900 0%, #1a1a2e 100%);
+            border-radius: 16px;
+            border: 1px solid #76b900;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .subtitle {
+            color: #76b900;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .exam-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .info-card {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .info-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #76b900;
+        }
+        
+        .info-card .label {
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
+        
+        .progress-section {
+            background: #21262d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #30363d;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar-container {
+            background: #0d1117;
+            border-radius: 10px;
+            height: 24px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #76b900, #9be22d);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .domain-card {
+            background: #21262d;
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid #30363d;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .domain-card:hover {
+            transform: translateY(-2px);
+            border-color: #76b900;
+        }
+        
+        .domain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .domain-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .domain-weight {
+            background: #76b900;
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        
+        .domain-hours {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+        
+        /* LAB RESOURCES SECTION */
+        .lab-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #21262d 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid #f85149;
+        }
+        
+        .lab-section h2 {
+            color: #f85149;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .budget-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .budget-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid #30363d;
+        }
+        
+        .budget-card.free {
+            border-color: #238636;
+        }
+        
+        .budget-card.paid {
+            border-color: #f0883e;
+        }
+        
+        .budget-card .amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+        
+        .budget-card.free .amount {
+            color: #238636;
+        }
+        
+        .budget-card.paid .amount {
+            color: #f0883e;
+        }
+        
+        .budget-card .desc {
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+        
+        .lab-timeline {
+            background: #0d1117;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .lab-timeline h3 {
+            color: #76b900;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #21262d;
+            align-items: center;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-when {
+            font-weight: 600;
+            color: #58a6ff;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-what {
+            font-size: 0.95rem;
+        }
+        
+        .timeline-what strong {
+            color: #76b900;
+        }
+        
+        .timeline-cost {
+            background: #21262d;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .timeline-cost.free {
+            color: #238636;
+        }
+        
+        .timeline-cost.paid {
+            color: #f0883e;
+        }
+        
+        .reality-check {
+            background: #21262d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #f85149;
+        }
+        
+        .reality-check h4 {
+            color: #f85149;
+            margin-bottom: 0.75rem;
+        }
+        
+        .reality-check ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .reality-check li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+        
+        .reality-check li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+        
+        .week-section {
+            margin-bottom: 2rem;
+        }
+        
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(90deg, #21262d, transparent);
+            border-left: 4px solid #76b900;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .week-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #76b900;
+        }
+        
+        .week-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .week-dates {
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+        
+        .week-lab-req {
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid #f85149;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .week-lab-req strong {
+            color: #f85149;
+        }
+        
+        .day-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .day-card {
+            background: #21262d;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            border: 1px solid #30363d;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1rem;
+            align-items: start;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .day-card:hover {
+            border-color: #76b900;
+            background: #262c36;
+        }
+        
+        .day-card.completed {
+            border-color: #238636;
+            background: rgba(35, 134, 54, 0.1);
+        }
+        
+        .day-card.completed .day-number {
+            background: #238636;
+        }
+        
+        .day-number {
+            width: 40px;
+            height: 40px;
+            background: #30363d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .day-date {
+            font-size: 0.75rem;
+            color: #58a6ff;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        
+        .day-card.today {
+            border-color: #f0883e;
+            background: rgba(240, 136, 62, 0.1);
+            box-shadow: 0 0 20px rgba(240, 136, 62, 0.2);
+        }
+        
+        .day-card.today .day-number {
+            background: #f0883e;
+        }
+        
+        .day-card.past:not(.completed) {
+            opacity: 0.6;
+            border-color: #f85149;
+        }
+        
+        .day-card.past:not(.completed) .day-number {
+            background: #f85149;
+        }
+        
+        .day-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .day-content p {
+            color: #8b949e;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+        
+        .day-lab-info {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid #58a6ff;
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .day-lab-info .lab-icon {
+            color: #58a6ff;
+        }
+        
+        .day-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .tag.theory { background: #1f6feb; color: #fff; }
+        .tag.lab { background: #a371f7; color: #fff; }
+        .tag.review { background: #f0883e; color: #fff; }
+        .tag.exam { background: #f85149; color: #fff; }
+        .tag.free { background: #238636; color: #fff; }
+        .tag.paid { background: #da3633; color: #fff; }
+        
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #30363d;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .day-card.completed .checkbox {
+            background: #238636;
+            border-color: #238636;
+        }
+        
+        .checkbox::after {
+            content: '✓';
+            color: #fff;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .day-card.completed .checkbox::after {
+            opacity: 1;
+        }
+        
+        .resources-section {
+            background: #21262d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #30363d;
+            margin-bottom: 2rem;
+        }
+        
+        .resources-section h3 {
+            margin-bottom: 1rem;
+            color: #76b900;
+        }
+        
+        .resource-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #0d1117;
+            border-radius: 8px;
+        }
+        
+        .resource-icon {
+            width: 36px;
+            height: 36px;
+            background: #76b900;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .resource-item a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        .resource-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .tip-card {
+            background: #0d1117;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #76b900;
+        }
+        
+        .tip-card h4 {
+            color: #76b900;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .tip-card p {
+            color: #8b949e;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #30363d;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #76b900;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
+        
+        .command-block {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+        }
+        
+        .command-block code {
+            color: #79c0ff;
+        }
+        
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .provider-card {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #30363d;
+        }
+        
+        .provider-card h5 {
+            color: #76b900;
+            margin-bottom: 0.5rem;
+        }
+        
+        .provider-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0883e;
+        }
+        
+        .provider-card .details {
+            color: #8b949e;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .day-card {
+                grid-template-columns: auto 1fr;
+                gap: 0.75rem;
+            }
+            
+            .day-tags {
+                grid-column: 1 / -1;
+                justify-content: flex-start;
+            }
+            
+            .checkbox {
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+            
+            .day-card {
+                position: relative;
+                padding-right: 3rem;
+            }
+            
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 NCP-AIO Certification</h1>
+            <p class="subtitle">NVIDIA AI Operations Professional • Exam Feb 28, 2025</p>
+            <div class="exam-info">
+                <div class="info-card">
+                    <div class="value" id="days-left">--</div>
+                    <div class="label">Days Left</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">3 hrs</div>
+                    <div class="label">Daily Study</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">~93</div>
+                    <div class="label">Total Hours</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">70-75</div>
+                    <div class="label">Questions</div>
+                </div>
+                <div class="info-card">
+                    <div class="value">120</div>
+                    <div class="label">Minutes</div>
+                </div>
+            </div>
+            <div id="today-indicator" style="margin-top: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 0.95rem;">
+                📅 Today: <span id="today-date">--</span> | <span id="today-task" style="color: #76b900;">--</span>
+            </div>
+        </header>
+
+        <section class="progress-section">
+            <div class="progress-header">
+                <h3>📊 Overall Progress</h3>
+                <span id="progress-text">0 / 31 days completed</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value" id="theory-hours">0</div>
+                    <div class="stat-label">Theory Hours</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="lab-hours">0</div>
+                    <div class="stat-label">Lab Hours</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="review-hours">0</div>
+                    <div class="stat-label">Review Hours</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="estimated-cost">$0</div>
+                    <div class="stat-label">Lab Cost Spent</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAB RESOURCES SECTION -->
+        <section class="lab-section">
+            <h2>🖥️ Lab Resources & Budget Plan</h2>
+            <p style="color: #8b949e; margin-bottom: 1.5rem;">This is a Professional-level exam requiring hands-on operational skills. Here's your realistic, budget-optimized lab strategy.</p>
+            
+            <div class="budget-summary">
+                <div class="budget-card free">
+                    <div class="amount">$0</div>
+                    <div class="desc">Free Resources<br>(Coursera, Colab, Kaggle, Local VMs)</div>
+                </div>
+                <div class="budget-card paid">
+                    <div class="amount">~$35-50</div>
+                    <div class="desc">Paid Cloud GPU<br>(Vast.ai A100 for MIG practice)</div>
+                </div>
+                <div class="budget-card" style="border-color: #76b900;">
+                    <div class="amount" style="color: #76b900;">~$35-50</div>
+                    <div class="desc">Total Estimated Cost<br>(Excluding exam fee: $400)</div>
+                </div>
+            </div>
+
+            <div class="lab-timeline">
+                <h3>📅 When You'll Need Each Resource</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-when">Week 1<br>Days 1-7</div>
+                    <div class="timeline-what">
+                        <strong>Coursera Course</strong> + <strong>Local VMs</strong> + <strong>Google Colab</strong><br>
+                        Theory-heavy: BCM concepts, NVIDIA stack overview. Colab for basic nvidia-smi, DCGM exploration.
+                    </div>
+                    <div class="timeline-cost free">FREE</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-when">Week 2<br>Days 8-14</div>
+                    <div class="timeline-what">
+                        <strong>Local VMs (Slurm/K8s config)</strong> + <strong>Kaggle</strong><br>
+                        Slurm configuration (no GPU needed). K8s basics with Minikube. GPU Operator concepts on Kaggle.
+                    </div>
+                    <div class="timeline-cost free">FREE</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-when">Week 3<br>Days 15-21</div>
+                    <div class="timeline-what">
+                        <strong>Vast.ai A100 40GB</strong> — <em>CRITICAL WEEK</em><br>
+                        MIG configuration hands-on (requires A100/H100). ~15-20 hours @ $0.75-1.00/hr
+                    </div>
+                    <div class="timeline-cost paid">~$15-20</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-when">Week 4<br>Days 22-28</div>
+                    <div class="timeline-what">
+                        <strong>Vast.ai A100</strong> (light use) + <strong>Local VMs</strong><br>
+                        Troubleshooting practice, DCGM deep dive. ~10-15 hours remaining cloud time.
+                    </div>
+                    <div class="timeline-cost paid">~$10-15</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-when">Days 29-31</div>
+                    <div class="timeline-what">
+                        <strong>Review Only</strong> — No new lab work<br>
+                        Focus on weak areas, practice questions, mental prep.
+                    </div>
+                    <div class="timeline-cost free">FREE</div>
+                </div>
+            </div>
+            
+            <div class="provider-grid">
+                <div class="provider-card">
+                    <h5>Vast.ai (Recommended)</h5>
+                    <div class="price">$0.75-1.00/hr</div>
+                    <div class="details">A100 40GB • Best for MIG • $5 min deposit</div>
+                </div>
+                <div class="provider-card">
+                    <h5>RunPod (Alternative)</h5>
+                    <div class="price">$1.79/hr</div>
+                    <div class="details">A100 80GB SXM • More expensive but reliable</div>
+                </div>
+                <div class="provider-card">
+                    <h5>Google Colab</h5>
+                    <div class="price">FREE</div>
+                    <div class="details">T4 GPU • Good for basics • Limited time</div>
+                </div>
+                <div class="provider-card">
+                    <h5>Kaggle Notebooks</h5>
+                    <div class="price">FREE</div>
+                    <div class="details">P100/T4 • 30 hrs/week • Background execution</div>
+                </div>
+            </div>
+
+            <div class="reality-check">
+                <h4>🎯 Reality Check: What You CAN'T Practice (And That's OK)</h4>
+                <ul>
+                    <li><strong>BCM (Base Command Manager)</strong> — Enterprise software, requires license. Study docs + videos deeply. ~31% of exam is BCM but many questions are conceptual/troubleshooting.</li>
+                    <li><strong>Run:ai</strong> — Enterprise platform. Learn from docs and architecture diagrams.</li>
+                    <li><strong>Multi-node NVLink/NVSwitch</strong> — DGX-level hardware. Focus on understanding topology and troubleshooting concepts.</li>
+                    <li><strong>BlueField DPU / DOCA</strong> — Specialized hardware. Study the architecture, commands, and common issues.</li>
+                </ul>
+                <p style="margin-top: 1rem; color: #76b900; font-weight: 600;">✅ What you CAN practice covers ~40-50% of hands-on skills. The rest is knowledge-based — docs, videos, and understanding workflows.</p>
+            </div>
+        </section>
+
+        <h3 style="margin-bottom: 1rem; color: #76b900;">📈 Exam Domain Weights</h3>
+        <div class="domains-grid">
+            <div class="domain-card">
+                <div class="domain-header">
+                    <span class="domain-name">Installation & Deployment</span>
+                    <span class="domain-weight">31%</span>
+                </div>
+                <div class="domain-hours">~29 hrs • BCM, Mission Control, K8s init, Slurm install, Run:ai, DOCA</div>
+            </div>
+            <div class="domain-card">
+                <div class="domain-header">
+                    <span class="domain-name">Administration</span>
+                    <span class="domain-weight">23%</span>
+                </div>
+                <div class="domain-hours">~21 hrs • Slurm admin, K8s admin, Run:ai, MIG configuration</div>
+            </div>
+            <div class="domain-card">
+                <div class="domain-header">
+                    <span class="domain-name">Workload Management</span>
+                    <span class="domain-weight">23%</span>
+                </div>
+                <div class="domain-hours">~21 hrs • Inference/training deployments, NGC containers, resource allocation</div>
+            </div>
+            <div class="domain-card">
+                <div class="domain-header">
+                    <span class="domain-name">Troubleshooting & Optimization</span>
+                    <span class="domain-weight">23%</span>
+                </div>
+                <div class="domain-hours">~21 hrs • Docker, Fabric Manager, BCM, Magnum IO, storage issues</div>
+            </div>
+        </div>
+
+        <!-- WEEK 1 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W1</span>
+                <div>
+                    <div class="week-title">Foundation & BCM Deep Dive</div>
+                    <div class="week-dates">Jan 29 (Wed) - Feb 4 (Tue) • Focus: Installation & Deployment (31%)</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Lab Resources This Week:</strong> Coursera course (free audit), Google Colab (free), 2 local VMs for basic setup practice. <strong>Cost: $0</strong>
+            </div>
+            <div class="day-grid">
+                <div class="day-card" data-day="1" data-theory="2" data-lab="1" data-cost="0">
+                    <div class="day-number">1</div>
+                    <div class="day-content">
+                        <h4>Exam Blueprint & Environment Setup</h4>
+                        <p>Read official study guide. Set up 2 Ubuntu VMs (VirtualBox/UTM). Start Coursera "AI Infrastructure and Operations Fundamentals" course.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab:</strong> Install Ubuntu 22.04 on VMs. Install Docker, verify with <code>docker run hello-world</code>
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="2" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">2</div>
+                    <div class="day-content">
+                        <h4>NVIDIA AI Infrastructure Fundamentals</h4>
+                        <p>Continue Coursera course. Learn data center architecture for AI workloads. Understand DGX systems, GPU computing basics.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Colab):</strong> Run <code>!nvidia-smi</code>, explore GPU info, CUDA version, memory. Understand output fields.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="3" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">3</div>
+                    <div class="day-content">
+                        <h4>Base Command Manager (BCM) - Architecture</h4>
+                        <p>BCM architecture & components. Base View interface. Cluster monitoring concepts. Study NVIDIA BCM documentation thoroughly.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">📚</span> <strong>Study:</strong> BCM docs, YouTube walkthroughs. Memorize Base View dashboard components, node states, alert types.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="4" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">4</div>
+                    <div class="day-content">
+                        <h4>BCM - Node & User Management</h4>
+                        <p>Node categories & configuration in BCM. User accounts, roles (Admin, Operator, Viewer), permissions. Software image management.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">📚</span> <strong>Study:</strong> BCM RBAC model, cmsh commands for node management. Create flashcards for key commands.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="5" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">5</div>
+                    <div class="day-content">
+                        <h4>BCM - Networking & Firmware Updates</h4>
+                        <p>Network configuration for nodes, DPUs, switches in BCM. Patch management, firmware updates, image synchronization workflows.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (VMs):</strong> Practice basic network config with <code>ip</code>, <code>nmcli</code>. Understand bonding, VLANs concepts.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="6" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">6</div>
+                    <div class="day-content">
+                        <h4>BCM - Troubleshooting & Reporting</h4>
+                        <p>Diagnosing job failures, node outages, resource bottlenecks via BCM. Documentation & reporting features. Common error patterns.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">📚</span> <strong>Study:</strong> Create a troubleshooting decision tree for BCM issues. Node states: UP, DOWN, DRAIN, etc.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="7" data-theory="1" data-lab="1" data-review="1" data-cost="0">
+                    <div class="day-number">7</div>
+                    <div class="day-content">
+                        <h4>Week 1 Review & Mission Control</h4>
+                        <p>Review BCM concepts. Introduction to Mission Control toolkit. Complete Coursera week 1-2 modules. Practice questions.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">✍️</span> <strong>Review:</strong> Write a 1-page summary of BCM architecture. Take Coursera quizzes.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 2 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W2</span>
+                <div>
+                    <div class="week-title">Kubernetes, Slurm & Run:ai</div>
+                    <div class="week-dates">Feb 5 (Wed) - Feb 11 (Tue) • Focus: Installation & Administration</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Lab Resources This Week:</strong> Local VMs (Minikube, Slurm config), Kaggle notebooks for GPU experiments. <strong>Cost: $0</strong>
+            </div>
+            <div class="day-grid">
+                <div class="day-card" data-day="8" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">8</div>
+                    <div class="day-content">
+                        <h4>Kubernetes on NVIDIA - GPU Operator</h4>
+                        <p>Installing K8s on NVIDIA hosts via BCM. GPU Operator architecture, components (driver, toolkit, device plugin, DCGM exporter).</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (VM):</strong> Install Minikube. Add NVIDIA Helm repo: <code>helm repo add nvidia https://nvidia.github.io/gpu-operator</code>
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="9" data-theory="1" data-lab="2" data-cost="0">
+                    <div class="day-number">9</div>
+                    <div class="day-content">
+                        <h4>Kubernetes GPU Scheduling & RBAC</h4>
+                        <p>GPU resource requests in pods. Device plugins. Namespace management. RBAC for GPU clusters. ClusterPolicy CRD.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (VM):</strong> Create namespace, apply RBAC. Write pod spec with <code>nvidia.com/gpu: 1</code> resource request (won't schedule without GPU, but learn syntax).
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="10" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">10</div>
+                    <div class="day-content">
+                        <h4>Slurm Installation & Architecture</h4>
+                        <p>Slurm architecture (slurmctld, slurmd, slurmdbd). Installation process. Key config files: slurm.conf, gres.conf.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (VMs):</strong> Install Slurm on 2 VMs. <code>apt install slurmctld slurmd</code>. Configure basic slurm.conf with partitions.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="11" data-theory="1" data-lab="2" data-cost="0">
+                    <div class="day-number">11</div>
+                    <div class="day-content">
+                        <h4>Slurm GPU Configuration (GRES)</h4>
+                        <p>gres.conf for GPUs. AutoDetect=nvml. Job scheduling with --gres=gpu:N. Partitions, QOS, fair-share scheduling.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (VMs):</strong> Configure gres.conf: <code>Name=gpu Type=tesla File=/dev/nvidia[0-1]</code>. Add <code>GresTypes=gpu</code> to slurm.conf.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="12" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">12</div>
+                    <div class="day-content">
+                        <h4>Slurm Administration Deep Dive</h4>
+                        <p>sinfo, squeue, scontrol, sacct commands. Job submission (sbatch, srun, salloc). Backfill scheduler. Preemption.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (VMs):</strong> Submit jobs with <code>sbatch</code>. Check status with <code>squeue</code>, <code>scontrol show job</code>. Practice <code>scontrol update</code>.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="13" data-theory="2" data-lab="1" data-cost="0">
+                    <div class="day-number">13</div>
+                    <div class="day-content">
+                        <h4>Run:ai - Architecture & Concepts</h4>
+                        <p>Run:ai architecture & components. Installation process (on K8s). Projects, quotas, fairness policies. Scheduling modes.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">📚</span> <strong>Study:</strong> Run:ai docs, YouTube demos. Understand over-quota, preemption, bin-packing vs. spread strategies.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="14" data-theory="1" data-lab="1" data-review="1" data-cost="0">
+                    <div class="day-number">14</div>
+                    <div class="day-content">
+                        <h4>Week 2 Review & MIG Introduction</h4>
+                        <p>Review K8s GPU Operator, Slurm, Run:ai. Introduction to Multi-Instance GPU (MIG) concepts. Prep for Week 3 paid labs.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">✍️</span> <strong>Review:</strong> Complete Coursera course. Write command cheat sheets for Slurm & K8s. Set up Vast.ai account.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 3 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W3</span>
+                <div>
+                    <div class="week-title">MIG, DPU, Workloads & NGC</div>
+                    <div class="week-dates">Feb 12 (Wed) - Feb 18 (Tue) • Focus: Administration & Workload Management</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Lab Resources This Week:</strong> <span style="color: #f85149;">Vast.ai A100 40GB (~$0.75-1.00/hr)</span> — This is your critical hands-on week! Budget ~15-20 hours. <strong>Estimated Cost: $15-20</strong>
+            </div>
+            <div class="day-grid">
+                <div class="day-card" data-day="15" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">15</div>
+                    <div class="day-content">
+                        <h4>MIG Configuration Deep Dive</h4>
+                        <p>MIG profiles (1g.5gb, 2g.10gb, 3g.20gb, 7g.40gb). GPU Instances (GI) and Compute Instances (CI). nvidia-smi mig commands.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai A100):</strong> Enable MIG: <code>nvidia-smi -i 0 -mig 1</code>. List profiles: <code>nvidia-smi mig -lgip</code>. Create GI: <code>nvidia-smi mig -cgi 9,19,19,19</code>
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="16" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">16</div>
+                    <div class="day-content">
+                        <h4>MIG with Slurm & Kubernetes</h4>
+                        <p>Configuring MIG in gres.conf for Slurm. MIG with GPU Operator in K8s. MIG strategies: single, mixed.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai A100):</strong> Create/destroy MIG instances. Practice different profile combinations. Run workloads on specific MIG devices.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="17" data-theory="1.5" data-lab="1.5" data-cost="0">
+                    <div class="day-number">17</div>
+                    <div class="day-content">
+                        <h4>BlueField DPU & DOCA Services</h4>
+                        <p>DPU architecture. DOCA SDK. Deploying services on DPU Arm. BlueField OS. Common use cases (storage, networking offload).</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">📚</span> <strong>Study:</strong> DOCA documentation. Understand DPU modes (embedded, separated host). No hands-on needed — focus on concepts & troubleshooting.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="18" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">18</div>
+                    <div class="day-content">
+                        <h4>NGC Containers - Deployment & Management</h4>
+                        <p>NGC catalog overview. Authentication (API key). Pulling containers. Running NGC containers with GPU access.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai):</strong> <code>docker login nvcr.io</code>. Pull PyTorch container: <code>docker pull nvcr.io/nvidia/pytorch:24.01-py3</code>. Run with <code>--gpus all</code>.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="19" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">19</div>
+                    <div class="day-content">
+                        <h4>Training Workloads - Slurm & Run:ai</h4>
+                        <p>Deploying distributed training jobs. Multi-node GPU training. Job scripts. Environment variables (CUDA_VISIBLE_DEVICES).</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai):</strong> Submit training job via Slurm: <code>sbatch --gres=gpu:1 train.sh</code>. Monitor with <code>nvidia-smi dmon</code>.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="20" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">20</div>
+                    <div class="day-content">
+                        <h4>Inference Workloads - K8s & Triton</h4>
+                        <p>Deploying inference services. Triton Inference Server basics. Scaling inference. Resource allocation strategies.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai):</strong> Pull Triton: <code>docker pull nvcr.io/nvidia/tritonserver:24.01-py3</code>. Understand model repository structure.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="21" data-theory="1" data-lab="1" data-review="1" data-cost="1">
+                    <div class="day-number">21</div>
+                    <div class="day-content">
+                        <h4>Week 3 Review & Resource Allocation</h4>
+                        <p>Review MIG, NGC, workloads. Resource allocation with Run:ai, Slurm, K8s. Fair scheduling, preemption policies.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">✍️</span> <strong>Review:</strong> Write MIG command cheat sheet. Document NGC container workflow. ~1hr final lab practice.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$1</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEEK 4 -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">W4</span>
+                <div>
+                    <div class="week-title">Troubleshooting, Optimization & Final Prep</div>
+                    <div class="week-dates">Feb 19 (Wed) - Feb 25 (Tue) • Focus: Troubleshooting (23%) & Review</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Lab Resources This Week:</strong> Vast.ai (light use ~10-15 hrs), Local VMs, Colab/Kaggle. <strong>Estimated Cost: $10-15</strong>
+            </div>
+            <div class="day-grid">
+                <div class="day-card" data-day="22" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">22</div>
+                    <div class="day-content">
+                        <h4>DCGM Deep Dive</h4>
+                        <p>DCGM architecture. dcgmi commands. Health monitoring, diagnostics. GPU metrics collection. Integration with Prometheus/Grafana.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai):</strong> Install DCGM. Run <code>dcgmi discovery -l</code>, <code>dcgmi diag -r 1</code>, <code>dcgmi dmon</code>. Interpret health status.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="23" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">23</div>
+                    <div class="day-content">
+                        <h4>Docker & Container Troubleshooting</h4>
+                        <p>NVIDIA Container Toolkit. Common Docker GPU issues. nvidia-container-runtime. Debugging container GPU visibility.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai):</strong> Troubleshoot: container can't see GPU. Check <code>/etc/docker/daemon.json</code>, runtime config. Force errors and fix them.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="24" data-theory="1.5" data-lab="1.5" data-cost="1">
+                    <div class="day-number">24</div>
+                    <div class="day-content">
+                        <h4>Fabric Manager & NVLink/NVSwitch</h4>
+                        <p>Fabric Manager service. NVLink topology. NVSwitch in multi-GPU systems. Troubleshooting connectivity, topology issues.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab:</strong> <code>nvidia-smi topo -m</code> to see topology. Study Fabric Manager logs, common errors. Mostly conceptual — focus on troubleshooting logic.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$1</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="25" data-theory="1.5" data-lab="1.5" data-cost="1">
+                    <div class="day-number">25</div>
+                    <div class="day-content">
+                        <h4>Magnum IO & Storage Performance</h4>
+                        <p>Magnum IO components (GPUDirect RDMA, GPUDirect Storage, NCCL). Storage optimization. I/O bottleneck identification.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">📚</span> <strong>Study:</strong> Magnum IO docs. Understand when to use GPUDirect vs. staged transfers. Storage performance metrics.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$1</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="26" data-theory="1" data-lab="2" data-cost="2">
+                    <div class="day-number">26</div>
+                    <div class="day-content">
+                        <h4>BCM Troubleshooting & NGC Issues</h4>
+                        <p>BCM common issues & resolution. NGC container deployment problems. Authentication failures. Image pull errors.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🔧</span> <strong>Lab (Vast.ai):</strong> Simulate NGC auth failure. Debug with <code>docker logs</code>. Practice recovery procedures.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag theory">Theory</span>
+                        <span class="tag lab">Lab</span>
+                        <span class="tag paid">~$2</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="27" data-theory="0" data-lab="0" data-review="3" data-cost="0">
+                    <div class="day-number">27</div>
+                    <div class="day-content">
+                        <h4>Full Review - Installation & Administration</h4>
+                        <p>Comprehensive review of BCM, K8s GPU Operator, Slurm, Run:ai, MIG. Practice questions. Udemy practice tests.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">✍️</span> <strong>Review:</strong> Go through all your notes. Take Udemy practice test. Identify weak areas.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="28" data-theory="0" data-lab="0" data-review="3" data-cost="0">
+                    <div class="day-number">28</div>
+                    <div class="day-content">
+                        <h4>Full Review - Workloads & Troubleshooting</h4>
+                        <p>Review workload management, DCGM, Docker, Fabric Manager, Magnum IO troubleshooting. More practice questions.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">✍️</span> <strong>Review:</strong> Second Udemy practice test. Review all troubleshooting decision trees you created.
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL DAYS -->
+        <section class="week-section">
+            <div class="week-header">
+                <span class="week-number">🎯</span>
+                <div>
+                    <div class="week-title">Final Sprint</div>
+                    <div class="week-dates">Feb 26 (Wed) - Feb 28 (Fri) • EXAM DAY!</div>
+                </div>
+            </div>
+            <div class="week-lab-req">
+                <strong>🖥️ Lab Resources:</strong> None needed — focus on review and rest. <strong>Cost: $0</strong>
+            </div>
+            <div class="day-grid">
+                <div class="day-card" data-day="29" data-theory="0" data-lab="0" data-review="3" data-cost="0">
+                    <div class="day-number">29</div>
+                    <div class="day-content">
+                        <h4>Weak Areas Deep Dive</h4>
+                        <p>Focus on areas identified from practice tests. Re-read relevant documentation. Light conceptual review only.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">✍️</span> <strong>Focus:</strong> NO new material. Only reinforce weak points. Create final 1-page cheat sheet (for memory, not exam).
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="30" data-theory="0" data-lab="0" data-review="2" data-cost="0">
+                    <div class="day-number">30</div>
+                    <div class="day-content">
+                        <h4>Light Review & Exam Prep</h4>
+                        <p>Very light review. Prepare exam environment: quiet room, stable internet, webcam, valid ID. Rest well tonight!</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">🎯</span> <strong>Prep:</strong> Test Certiverse platform. Check system requirements. Set up exam space. Go to bed early!
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag review">Review</span>
+                        <span class="tag free">FREE</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+                
+                <div class="day-card" data-day="31" data-theory="0" data-lab="0" data-review="0" data-cost="0">
+                    <div class="day-number">31</div>
+                    <div class="day-content">
+                        <h4>🏆 EXAM DAY - February 28, 2025</h4>
+                        <p>You've got this, Akhil! 120 minutes, 70-75 questions. Trust your preparation. Read each question carefully. Flag and return to tough ones.</p>
+                        <div class="day-lab-info">
+                            <span class="lab-icon">💪</span> <strong>Strategy:</strong> ~1.5 min per question. Don't get stuck. Use process of elimination. You've put in the work — now execute!
+                        </div>
+                    </div>
+                    <div class="day-tags">
+                        <span class="tag exam">EXAM DAY</span>
+                    </div>
+                    <div class="checkbox"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESOURCES -->
+        <section class="resources-section">
+            <h3>📚 Essential Resources</h3>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <div class="resource-icon">📄</div>
+                    <div>
+                        <strong>Official Study Guide</strong><br>
+                        <a href="https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web" target="_blank">NCP-AIO Study Guide PDF</a> — Read this FIRST!
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🎓</div>
+                    <div>
+                        <strong>Coursera Course (FREE audit)</strong><br>
+                        <a href="https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals" target="_blank">AI Infrastructure and Operations Fundamentals</a> — Complete in Week 1-2
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📝</div>
+                    <div>
+                        <strong>Udemy Practice Tests</strong><br>
+                        <a href="https://www.udemy.com/course/nvidia-ncp-aio-exam/" target="_blank">NCP-AIO Practice Exams</a> — Use in Week 4 for final prep
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📖</div>
+                    <div>
+                        <strong>NVIDIA Documentation</strong><br>
+                        <a href="https://docs.nvidia.com/base-command-manager/" target="_blank">BCM Docs</a> • 
+                        <a href="https://docs.nvidia.com/dcgm/" target="_blank">DCGM</a> • 
+                        <a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/" target="_blank">GPU Operator</a> •
+                        <a href="https://docs.nvidia.com/datacenter/tesla/mig-user-guide/" target="_blank">MIG Guide</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🐳</div>
+                    <div>
+                        <strong>NGC Catalog</strong><br>
+                        <a href="https://catalog.ngc.nvidia.com/" target="_blank">Browse NVIDIA containers</a> — Practice pulling and running
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">📺</div>
+                    <div>
+                        <strong>Slurm Documentation</strong><br>
+                        <a href="https://slurm.schedmd.com/documentation.html" target="_blank">Official Slurm Docs</a> • 
+                        <a href="https://slurm.schedmd.com/gres.html" target="_blank">GRES (GPU) Scheduling</a>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 1.5rem;">💡 Exam Strategy Tips</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>🎯 Focus on BCM (31%)</h4>
+                    <p>BCM is the biggest chunk. Even without hands-on access, deeply understand Base View, node management, cmsh commands, troubleshooting workflows.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🔬 MIG is Testable</h4>
+                    <p>MIG commands are very specific. Know: nvidia-smi mig -lgip, -cgi, -dci, -dgi. Understand profiles for A100 (1g.5gb through 7g.40gb).</p>
+                </div>
+                <div class="tip-card">
+                    <h4>📝 Slurm Commands</h4>
+                    <p>Memorize: sbatch, srun, salloc, squeue, sinfo, scontrol, sacct. Know gres.conf syntax and slurm.conf GPU settings.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>⚡ Your K8s Advantage</h4>
+                    <p>Your Hybrid-AIO project means K8s concepts are familiar. Focus extra time on NVIDIA-specific: GPU Operator, ClusterPolicy, device plugin.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🔧 Troubleshooting Logic</h4>
+                    <p>23% is troubleshooting. Build decision trees: "If container can't see GPU → check runtime → check driver → check DCGM health".</p>
+                </div>
+                <div class="tip-card">
+                    <h4>⏱️ Time Management</h4>
+                    <p>120 min / 75 questions = ~1.6 min each. Flag difficult questions and return. Don't spend 5 min on one question.</p>
+                </div>
+            </div>
+            
+            <div class="command-block" style="margin-top: 1.5rem;">
+                <h4 style="color: #76b900; margin-bottom: 0.5rem;">🔥 Must-Know Commands Cheat Sheet</h4>
+<code># nvidia-smi basics
+nvidia-smi                           # GPU status
+nvidia-smi -L                        # List GPUs
+nvidia-smi topo -m                   # Topology matrix
+
+# MIG commands (A100/H100)
+nvidia-smi -i 0 -mig 1               # Enable MIG
+nvidia-smi mig -lgip                 # List GPU instance profiles
+nvidia-smi mig -cgi 9,19,19,19       # Create GPU instances
+nvidia-smi mig -lgi                  # List GPU instances
+nvidia-smi mig -dgi                  # Destroy GPU instances
+
+# DCGM
+dcgmi discovery -l                   # List GPUs
+dcgmi diag -r 1                      # Run diagnostics (level 1)
+dcgmi health -c                      # Check health
+dcgmi dmon                           # Monitor metrics
+
+# Slurm
+sbatch script.sh                     # Submit batch job
+srun --gres=gpu:2 ./app              # Run with 2 GPUs
+squeue                               # View queue
+sinfo                                # Cluster info
+scontrol show job JOBID              # Job details
+
+# Kubernetes GPU
+kubectl describe node | grep nvidia  # Check GPU resources
+kubectl logs -n gpu-operator [pod]   # GPU Operator logs</code>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Study plan dates - Day 1 starts Jan 29, 2025
+        const START_DATE = new Date('2025-01-29');
+        const EXAM_DATE = new Date('2025-02-28');
+        
+        // Day titles for quick reference
+        const DAY_TITLES = {
+            1: "Exam Blueprint & Environment Setup",
+            2: "NVIDIA AI Infrastructure Fundamentals",
+            3: "Base Command Manager - Architecture",
+            4: "BCM - Node & User Management",
+            5: "BCM - Networking & Firmware Updates",
+            6: "BCM - Troubleshooting & Reporting",
+            7: "Week 1 Review & Mission Control",
+            8: "Kubernetes on NVIDIA - GPU Operator",
+            9: "Kubernetes GPU Scheduling & RBAC",
+            10: "Slurm Installation & Architecture",
+            11: "Slurm GPU Configuration (GRES)",
+            12: "Slurm Administration Deep Dive",
+            13: "Run:ai - Architecture & Concepts",
+            14: "Week 2 Review & MIG Introduction",
+            15: "MIG Configuration Deep Dive",
+            16: "MIG with Slurm & Kubernetes",
+            17: "BlueField DPU & DOCA Services",
+            18: "NGC Containers - Deployment & Management",
+            19: "Training Workloads - Slurm & Run:ai",
+            20: "Inference Workloads - K8s & Triton",
+            21: "Week 3 Review & Resource Allocation",
+            22: "DCGM Deep Dive",
+            23: "Docker & Container Troubleshooting",
+            24: "Fabric Manager & NVLink/NVSwitch",
+            25: "Magnum IO & Storage Performance",
+            26: "BCM Troubleshooting & NGC Issues",
+            27: "Full Review - Installation & Administration",
+            28: "Full Review - Workloads & Troubleshooting",
+            29: "Weak Areas Deep Dive",
+            30: "Light Review & Exam Prep",
+            31: "🏆 EXAM DAY!"
+        };
+        
+        // Get date for a specific day number
+        function getDateForDay(dayNum) {
+            const date = new Date(START_DATE);
+            date.setDate(date.getDate() + dayNum - 1);
+            return date;
+        }
+        
+        // Format date nicely
+        function formatDate(date) {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}`;
+        }
+        
+        // Format date short
+        function formatDateShort(date) {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            return `${days[date.getDay()]} ${date.getMonth() + 1}/${date.getDate()}`;
+        }
+        
+        // Get current study day (1-31, or 0 if before start, or 32+ if after)
+        function getCurrentStudyDay() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const start = new Date(START_DATE);
+            start.setHours(0, 0, 0, 0);
+            const diffTime = today - start;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays + 1;
+        }
+        
+        // Calculate days until exam
+        function getDaysUntilExam() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const exam = new Date(EXAM_DATE);
+            exam.setHours(0, 0, 0, 0);
+            const diffTime = exam - today;
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+        
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('ncp-aio-progress-v2');
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        // Save progress
+        function saveProgress(progress) {
+            localStorage.setItem('ncp-aio-progress-v2', JSON.stringify(progress));
+        }
+
+        // Update progress bar and stats
+        function updateProgress() {
+            const progress = loadProgress();
+            const completed = Object.keys(progress).filter(k => progress[k]).length;
+            const total = 31;
+            const percent = Math.round((completed / total) * 100);
+            
+            document.getElementById('progress-bar').style.width = percent + '%';
+            document.getElementById('progress-bar').textContent = percent + '%';
+            document.getElementById('progress-text').textContent = `${completed} / ${total} days completed`;
+
+            // Calculate hours and cost
+            let theoryHours = 0, labHours = 0, reviewHours = 0, totalCost = 0;
+            document.querySelectorAll('.day-card').forEach(card => {
+                if (progress[card.dataset.day]) {
+                    theoryHours += parseFloat(card.dataset.theory || 0);
+                    labHours += parseFloat(card.dataset.lab || 0);
+                    reviewHours += parseFloat(card.dataset.review || 0);
+                    totalCost += parseFloat(card.dataset.cost || 0);
+                }
+            });
+            
+            document.getElementById('theory-hours').textContent = theoryHours.toFixed(1);
+            document.getElementById('lab-hours').textContent = labHours.toFixed(1);
+            document.getElementById('review-hours').textContent = reviewHours.toFixed(1);
+            document.getElementById('estimated-cost').textContent = '$' + totalCost.toFixed(0);
+        }
+
+        // Initialize dates and day cards
+        function initializeDates() {
+            const currentDay = getCurrentStudyDay();
+            const daysUntilExam = getDaysUntilExam();
+            const today = new Date();
+            
+            // Update header
+            document.getElementById('days-left').textContent = Math.max(0, daysUntilExam);
+            document.getElementById('today-date').textContent = formatDate(today);
+            
+            if (currentDay >= 1 && currentDay <= 31) {
+                document.getElementById('today-task').textContent = `Day ${currentDay}: ${DAY_TITLES[currentDay]}`;
+            } else if (currentDay < 1) {
+                document.getElementById('today-task').textContent = `Study starts ${formatDate(START_DATE)}`;
+            } else {
+                document.getElementById('today-task').textContent = `Exam complete! 🎉`;
+            }
+            
+            // Update each day card with date
+            document.querySelectorAll('.day-card').forEach(card => {
+                const dayNum = parseInt(card.dataset.day);
+                const dayDate = getDateForDay(dayNum);
+                
+                // Add date display
+                const contentDiv = card.querySelector('.day-content');
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'day-date';
+                dateDiv.textContent = formatDateShort(dayDate);
+                contentDiv.insertBefore(dateDiv, contentDiv.firstChild);
+                
+                // Highlight today
+                if (dayNum === currentDay) {
+                    card.classList.add('today');
+                    // Scroll to today's card
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 500);
+                }
+                
+                // Mark past days
+                if (dayNum < currentDay) {
+                    card.classList.add('past');
+                }
+            });
+        }
+
+        // Initialize
+        document.querySelectorAll('.day-card').forEach(card => {
+            const day = card.dataset.day;
+            const progress = loadProgress();
+            
+            if (progress[day]) {
+                card.classList.add('completed');
+            }
+            
+            card.addEventListener('click', () => {
+                const progress = loadProgress();
+                progress[day] = !progress[day];
+                saveProgress(progress);
+                card.classList.toggle('completed');
+                updateProgress();
+            });
+        });
+
+        initializeDates();
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCP-AIO Study Plan | Akhil's 31-Day Roadmap</title>
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d1117">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Flashcard Styles -->
+    <style>
+        .flashcard {
+            background: #0d1117;
+            height: 200px;
+            perspective: 1000px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .flashcard-front {
+            background: #161b22;
+        }
+
+        .flashcard-back {
+            background: #21262d;
+            transform: rotateY(180deg);
+            border: 1px solid #76b900;
+        }
+
+        .card-category {
+            font-size: 0.7rem;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #e6edf3;
+            font-weight: 500;
+        }
+
+        .card-hint {
+            font-size: 0.7rem;
+            color: #58a6ff;
+            margin-top: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+
+        .fc-btn {
+            background: #30363d;
+            border: none;
+            color: #e6edf3;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .fc-btn.action {
+            color: #76b900;
+            border: 1px solid #30363d;
+            background: #0d1117;
+        }
+
+        .card-counter {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8b949e;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-layout">
+        <div class="content-area">
+            <header>
+                <h1>🎯 NCP-AIO Certification</h1>
+                <p class="subtitle">NVIDIA AI Operations Professional • Exam Feb 28, 2025</p>
+                <div class="exam-info">
+                    <div class="info-card">
+                        <div class="value" id="days-left">--</div>
+                        <div class="label">Days Left</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="value">3 hrs</div>
+                        <div class="label">Daily</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="value">~93</div>
+                        <div class="label">Total Hrs</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="value">70-75</div>
+                        <div class="label">Questions</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="value">120</div>
+                        <div class="label">Minutes</div>
+                    </div>
+                </div>
+                <div id="today-indicator">📅 Today: <span id="today-date">--</span> | <span id="today-task"
+                        style="color: #76b900;">--</span></div>
+            </header>
+
+            <section class="progress-section">
+                <div class="progress-header">
+                    <h3>📊 Overall Progress</h3><span id="progress-text">0 / 124 subtasks</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+                </div>
+                <div class="stats-bar">
+                    <div class="stat">
+                        <div class="stat-value" id="days-complete">0/31</div>
+                        <div class="stat-label">Days Done</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="theory-tasks">0</div>
+                        <div class="stat-label">Theory</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="lab-tasks">0</div>
+                        <div class="stat-label">Labs</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="review-tasks">0</div>
+                        <div class="stat-label">Review</div>
+                    </div>
+                </div>
+            </section>
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search days..."
+                    oninput="filterDays()">
+                <div class="filter-tags">
+                    <span class="filter-tag theory" onclick="toggleFilter('theory')">📚 Theory</span>
+                    <span class="filter-tag lab" onclick="toggleFilter('lab')">🧪 Lab</span>
+                    <span class="filter-tag review" onclick="toggleFilter('review')">📝 Review</span>
+                </div>
+                <button class="toolbar-btn" onclick="toggleAllDays()">📂 Expand/Collapse</button>
+                <button class="toolbar-btn" onclick="openSettings()">⚙️ Settings</button>
+                <button class="toolbar-btn" onclick="exportData()">💾 Export</button>
+                <button class="toolbar-btn" onclick="document.getElementById('importFile').click()">📥 Import</button>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+                <a class="toolbar-btn" href="cheatsheet.html" target="_blank" style="text-decoration:none;">📄 Cheat
+                    Sheet</a>
+            </div>
+
+            <section class="week-section">
+                <div class="week-header"><span class="week-number">W1</span>
+                    <div>
+                        <div class="week-title">Foundation & BCM Deep Dive</div>
+                        <div class="week-dates">Wed Jan 29 - Tue Feb 4 • Installation & Deployment (31%)</div>
+                    </div>
+                </div>
+                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Coursera (free), Google Colab (free), Local
+                    VMs (optional) • <strong>Cost: $0</strong></div>
+                <div class="day-grid" id="week1-days"></div>
+            </section>
+
+            <section class="week-section">
+                <div class="week-header"><span class="week-number">W2</span>
+                    <div>
+                        <div class="week-title">Kubernetes, Slurm & Run:ai</div>
+                        <div class="week-dates">Wed Feb 5 - Tue Feb 11 • Installation & Administration</div>
+                    </div>
+                </div>
+                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Local VMs (Minikube, Slurm), Kaggle •
+                    <strong>Cost: $0</strong>
+                </div>
+                <div class="day-grid" id="week2-days"></div>
+            </section>
+
+            <section class="week-section">
+                <div class="week-header"><span class="week-number">W3</span>
+                    <div>
+                        <div class="week-title">MIG, DPU, Workloads & NGC</div>
+                        <div class="week-dates">Wed Feb 12 - Tue Feb 18 • Admin & Workload Mgmt</div>
+                    </div>
+                </div>
+                <div class="week-lab-req"><strong>🖥️ Resources:</strong> <span style="color:#f0883e;">Vast.ai A100
+                        (~15-20 hrs)</span> — CRITICAL WEEK! • <strong>Cost: ~$15-20</strong></div>
+                <div class="day-grid" id="week3-days"></div>
+            </section>
+
+            <section class="week-section">
+                <div class="week-header"><span class="week-number">W4</span>
+                    <div>
+                        <div class="week-title">Troubleshooting & Optimization</div>
+                        <div class="week-dates">Wed Feb 19 - Tue Feb 25 • Troubleshooting (23%)</div>
+                    </div>
+                </div>
+                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Vast.ai (light ~10 hrs), Local VMs •
+                    <strong>Cost: ~$10-15</strong>
+                </div>
+                <div class="day-grid" id="week4-days"></div>
+            </section>
+
+            <section class="week-section">
+                <div class="week-header"><span class="week-number">🎯</span>
+                    <div>
+                        <div class="week-title">Final Sprint</div>
+                        <div class="week-dates">Wed Feb 26 - Fri Feb 28 • EXAM DAY!</div>
+                    </div>
+                </div>
+                <div class="week-lab-req"><strong>🖥️ Resources:</strong> Review only — no labs! • <strong>Cost:
+                        $0</strong></div>
+                <div class="day-grid" id="final-days"></div>
+            </section>
+        </div>
+        <!-- STUDY BUDDY SIDEBAR -->
+        <div class="study-buddy" id="studyBuddy">
+            <div class="buddy-header">
+                <h2>🤖 Study Buddy</h2>
+                <button class="close-buddy-btn" onclick="toggleBuddy()" aria-label="Close Sidebar">✕</button>
+            </div>
+            <div class="buddy-tabs">
+                <button class="buddy-tab active" onclick="switchTab('tips')">💡 Tips</button>
+                <button class="buddy-tab" onclick="switchTab('cards')">🎴 Cards</button>
+                <button class="buddy-tab" onclick="switchTab('commands')">⌨️ Cmds</button>
+                <button class="buddy-tab" onclick="switchTab('links')">🔗 Links</button>
+                <button class="buddy-tab" onclick="switchTab('tools')">🛠️ Tools</button>
+            </div>
+            <div class="buddy-content">
+                <!-- TIPS PANEL -->
+                <div class="buddy-panel active" id="panel-tips">
+                    <div class="motivational-quote">
+                        <p id="quote-text">"The only way to do great work is to love what you do."</p>
+                        <div class="author" id="quote-author">— Steve Jobs</div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>📊 Exam Domain Weights</h3>
+                        <div class="weight-bar">
+                            <div class="segment" style="width: 31%; background: #f85149;" title="Installation 31%">
+                            </div>
+                            <div class="segment" style="width: 23%; background: #f0883e;" title="Administration 23%">
+                            </div>
+                            <div class="segment" style="width: 23%; background: #58a6ff;" title="Workload 23%"></div>
+                            <div class="segment" style="width: 23%; background: #a371f7;" title="Troubleshooting 23%">
+                            </div>
+                        </div>
+                        <div class="weight-legend">
+                            <span><span class="dot" style="background:#f85149;"></span> Install 31%</span>
+                            <span><span class="dot" style="background:#f0883e;"></span> Admin 23%</span>
+                            <span><span class="dot" style="background:#58a6ff;"></span> Workload 23%</span>
+                            <span><span class="dot" style="background:#a371f7;"></span> Troubleshoot 23%</span>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>🎯 Exam Strategy</h3>
+                        <div class="buddy-card tip">
+                            <h4>Time Management</h4>
+                            <p>120 min ÷ 75 questions = ~1.6 min each. Flag tough ones and return later.</p>
+                        </div>
+                        <div class="buddy-card tip">
+                            <h4>BCM is Key (31%)</h4>
+                            <p>Biggest chunk! Focus on Base View, node states, cmsh commands, troubleshooting.</p>
+                        </div>
+                        <div class="buddy-card tip">
+                            <h4>Know MIG Cold</h4>
+                            <p>Memorize: nvidia-smi mig -lgip, -cgi, -lgi, -dgi. Know A100 profiles.</p>
+                        </div>
+                        <div class="buddy-card warning">
+                            <h4>Read Questions Carefully</h4>
+                            <p>Look for keywords: "BEST", "FIRST", "MOST likely". They change the answer!</p>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>⚠️ What You CAN'T Practice</h3>
+                        <div class="buddy-card critical">
+                            <h4>Enterprise-Only Tools</h4>
+                            <p>BCM, Run:ai, multi-node NVLink — study docs & videos deeply. Focus on concepts &
+                                troubleshooting logic.</p>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>✅ Daily Checklist</h3>
+                        <ul class="checklist" id="dailyChecklist">
+                            <li onclick="toggleChecklist(this)"><input type="checkbox"> <span>Complete today's
+                                    subtasks</span></li>
+                            <li onclick="toggleChecklist(this)"><input type="checkbox"> <span>Review yesterday's
+                                    notes</span></li>
+                            <li onclick="toggleChecklist(this)"><input type="checkbox"> <span>Practice 5-10
+                                    flashcards</span></li>
+                            <li onclick="toggleChecklist(this)"><input type="checkbox"> <span>Take breaks
+                                    (Pomodoro!)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FLASHCARDS PANEL -->
+                <div class="buddy-panel" id="panel-cards">
+                    <div class="buddy-section">
+                        <h3>🎴 Flashcards</h3>
+                        <div id="flashcard-progress" style="margin-bottom: 1rem;">
+                            <!-- Progress will be injected here -->
+                        </div>
+                        <div id="flashcard-container">
+                            <!-- Card will be injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMMANDS PANEL -->
+                <div class="buddy-panel" id="panel-commands">
+                    <div class="buddy-section">
+                        <h3>🖥️ nvidia-smi Essentials</h3>
+                        <div class="command-box">
+                            <div class="cmd-title">GPU Status & Info</div><code>nvidia-smi                <span class="comment"># Full status</span>
+nvidia-smi -L              <span class="comment"># List GPUs</span>
+nvidia-smi -q              <span class="comment"># Detailed query</span>
+nvidia-smi topo -m         <span class="comment"># Topology matrix</span>
+nvidia-smi dmon            <span class="comment"># Live monitoring</span></code>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>🔲 MIG Commands (A100/H100)</h3>
+                        <div class="command-box">
+                            <div class="cmd-title">Enable & Configure MIG</div><code>nvidia-smi -i 0 -mig 1     <span class="comment"># Enable MIG</span>
+nvidia-smi -i 0 -mig 0     <span class="comment"># Disable MIG</span>
+nvidia-smi mig -lgip       <span class="comment"># List GPU profiles</span>
+nvidia-smi mig -lcip       <span class="comment"># List compute profiles</span></code>
+                        </div>
+                        <div class="command-box">
+                            <div class="cmd-title">Create & Destroy Instances</div><code>nvidia-smi mig -cgi 9,19,19,19  <span class="comment"># Create GIs</span>
+nvidia-smi mig -cci             <span class="comment"># Create CIs</span>
+nvidia-smi mig -lgi             <span class="comment"># List GIs</span>
+nvidia-smi mig -dgi -gi 0       <span class="comment"># Destroy GI</span>
+nvidia-smi mig -dci             <span class="comment"># Destroy CIs</span></code>
+                        </div>
+                        <div class="buddy-card tip">
+                            <h4>A100 40GB Profiles</h4>
+                            <p>1g.5gb (ID 19), 2g.10gb (ID 14), 3g.20gb (ID 9), 4g.20gb (ID 5), 7g.40gb (ID 0)</p>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>📊 DCGM Commands</h3>
+                        <div class="command-box">
+                            <div class="cmd-title">Diagnostics & Monitoring</div><code>dcgmi discovery -l         <span class="comment"># List GPUs</span>
+dcgmi diag -r 1            <span class="comment"># Quick diag (1 min)</span>
+dcgmi diag -r 2            <span class="comment"># Medium diag (2 min)</span>
+dcgmi diag -r 3            <span class="comment"># Long diag (15 min)</span>
+dcgmi health -c            <span class="comment"># Health check</span>
+dcgmi dmon                 <span class="comment"># Live metrics</span></code>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>📋 Slurm Commands</h3>
+                        <div class="command-box">
+                            <div class="cmd-title">Job Management</div><code>sbatch script.sh           <span class="comment"># Submit batch job</span>
+sbatch --gres=gpu:2 job.sh <span class="comment"># Request 2 GPUs</span>
+srun --gres=gpu:1 ./app    <span class="comment"># Interactive run</span>
+salloc --gres=gpu:1        <span class="comment"># Allocate resources</span>
+scancel JOBID              <span class="comment"># Cancel job</span></code>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>☸️ Kubernetes GPU</h3>
+                        <div class="command-box">
+                            <div class="cmd-title">GPU Operator & Debugging</div><code>kubectl get nodes -o wide
+kubectl describe node NODE | grep nvidia
+kubectl get pods -n gpu-operator
+kubectl logs -n gpu-operator POD</code>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>🐳 Docker GPU</h3>
+                        <div class="command-box">
+                            <div class="cmd-title">Run with GPU Access</div><code>docker run --gpus all nvidia/cuda nvidia-smi
+docker run --gpus '"device=0,1"' IMAGE
+docker run --runtime=nvidia IMAGE</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LINKS PANEL -->
+                <div class="buddy-panel" id="panel-links">
+                    <div class="buddy-section">
+                        <h3>📚 Official Documentation</h3>
+                        <ul class="link-list">
+                            <li><a href="https://nvdam.widen.net/s/p9ssxqwvn6" target="_blank">📄 NCP-AIO Study Guide
+                                    (PDF)</a></li>
+                            <li><a href="https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/"
+                                    target="_blank">🎯 Exam Registration Page</a></li>
+                            <li><a href="https://docs.nvidia.com/base-command-manager/" target="_blank">📖 BCM
+                                    Documentation</a></li>
+                            <li><a href="https://docs.nvidia.com/datacenter/tesla/mig-user-guide/" target="_blank">📖
+                                    MIG User Guide</a></li>
+                            <li><a href="https://docs.nvidia.com/dcgm/" target="_blank">📖 DCGM Documentation</a></li>
+                            <li><a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/"
+                                    target="_blank">📖 GPU Operator Docs</a></li>
+                        </ul>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>🎓 Learning Resources</h3>
+                        <ul class="link-list">
+                            <li><a href="https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals"
+                                    target="_blank">🎓 Coursera: AI Infrastructure (FREE)</a></li>
+                            <li><a href="https://www.udemy.com/course/nvidia-ncp-aio-exam/" target="_blank">📝 Udemy
+                                    Practice Tests</a></li>
+                            <li><a href="https://catalog.ngc.nvidia.com/" target="_blank">🐳 NGC Container Catalog</a>
+                            </li>
+                            <li><a href="https://slurm.schedmd.com/documentation.html" target="_blank">📖 Slurm
+                                    Documentation</a></li>
+                            <li><a href="https://slurm.schedmd.com/gres.html" target="_blank">📖 Slurm GRES (GPU)
+                                    Guide</a></li>
+                        </ul>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>☁️ Lab Resources</h3>
+                        <ul class="link-list">
+                            <li><a href="https://vast.ai/" target="_blank">💰 Vast.ai (Cheap A100 ~$0.75/hr)</a></li>
+                            <li><a href="https://www.runpod.io/" target="_blank">💰 RunPod (A100 ~$1.79/hr)</a></li>
+                            <li><a href="https://colab.research.google.com/" target="_blank">🆓 Google Colab (Free
+                                    T4)</a></li>
+                            <li><a href="https://www.kaggle.com/" target="_blank">🆓 Kaggle Notebooks (Free P100)</a>
+                            </li>
+                            <li><a href="https://lightning.ai/" target="_blank">🆓 Lightning.ai (Free GPU hours)</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>📺 YouTube</h3>
+                        <ul class="link-list">
+                            <li><a href="https://www.youtube.com/@NVIDIADeveloper" target="_blank">📺 NVIDIA
+                                    Developer</a></li>
+                            <li><a href="https://www.youtube.com/results?search_query=base+command+manager+nvidia"
+                                    target="_blank">🔍 Search: BCM Tutorials</a></li>
+                            <li><a href="https://www.youtube.com/results?search_query=nvidia+mig+tutorial"
+                                    target="_blank">🔍 Search: MIG Tutorials</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- TOOLS PANEL -->
+                <div class="buddy-panel" id="panel-tools">
+                    <div class="buddy-section">
+                        <h3>⏱️ Pomodoro Timer</h3>
+                        <div class="pomodoro-timer">
+                            <div style="font-size: 0.8rem; color: #8b949e;">Study Session</div>
+                            <div class="pomodoro-display" id="pomodoroDisplay">25:00</div>
+                            <div class="pomodoro-btns">
+                                <button class="start-btn" id="pomodoroBtn" onclick="togglePomodoro()">▶ Start</button>
+                                <button class="reset-btn" onclick="resetPomodoro()">↺ Reset</button>
+                            </div>
+                            <div style="margin-top: 0.75rem; font-size: 0.75rem; color: #8b949e;">
+                                <span onclick="setPomodoro(25)" style="cursor:pointer; color: #58a6ff;">25min</span> |
+                                <span onclick="setPomodoro(50)" style="cursor:pointer; color: #58a6ff;">50min</span> |
+                                <span onclick="setPomodoro(5)" style="cursor:pointer; color: #58a6ff;">5min break</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>📝 Quick Notes</h3>
+                        <textarea class="notes-area" id="quickNotes"
+                            placeholder="Jot down notes, questions, or things to review..."></textarea>
+                        <button onclick="saveNotes()"
+                            style="margin-top: 0.5rem; padding: 0.4rem 0.75rem; background: #238636; border: none; border-radius: 4px; color: #fff; cursor: pointer; font-size: 0.8rem;">💾
+                            Save Notes</button>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>💰 Budget Tracker</h3>
+                        <div class="buddy-card">
+                            <h4>Lab Spending</h4>
+                            <p>Target: ~$35-50 total</p>
+                            <div style="margin-top: 0.5rem;">
+                                <label style="font-size: 0.75rem; color: #8b949e;">Spent so far: $</label>
+                                <input type="number" id="budgetSpent" value="0" min="0"
+                                    style="width: 60px; background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 0.25rem; color: #e6edf3; font-size: 0.85rem;"
+                                    onchange="saveBudget()">
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8rem;">Remaining: <span style="color: #76b900;"
+                                    id="budgetRemaining">$50</span></div>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>🧠 Weak Areas Tracker</h3>
+                        <textarea class="notes-area" id="weakAreas" placeholder="List topics you need to review more:
+- BCM node management
+- Slurm backfill scheduler
+- ..." style="min-height: 100px;"></textarea>
+                        <button onclick="saveWeakAreas()"
+                            style="margin-top: 0.5rem; padding: 0.4rem 0.75rem; background: #f0883e; border: none; border-radius: 4px; color: #000; cursor: pointer; font-size: 0.8rem;">💾
+                            Save</button>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>🎲 Random Practice Question</h3>
+                        <div class="buddy-card" id="practiceQuestion">
+                            <p style="color: #e6edf3; margin-bottom: 0.5rem;" id="questionText">Click "New Question" to
+                                get a random topic to review!</p>
+                            <button onclick="newQuestion()"
+                                style="padding: 0.4rem 0.75rem; background: #58a6ff; border: none; border-radius: 4px; color: #000; cursor: pointer; font-size: 0.8rem;">🎲
+                                New Question</button>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>📊 Practice Test Scores</h3>
+                        <div class="buddy-card">
+                            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+                                <input type="number" id="testScoreInput" min="0" max="100" placeholder="Score %"
+                                    style="width: 70px; background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 0.25rem; color: #e6edf3; font-size: 0.85rem;">
+                                <button onclick="addTestScore()"
+                                    style="padding: 0.3rem 0.6rem; background: #238636; border: none; border-radius: 4px; color: #fff; cursor: pointer; font-size: 0.75rem;">+
+                                    Add</button>
+                            </div>
+                            <div id="scoreHistory" style="font-size: 0.8rem; color: #8b949e;">No scores recorded yet
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.85rem;">Avg: <span id="avgScore"
+                                    style="color: #76b900; font-weight: 700;">--</span></div>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>⏰ Exam Countdown</h3>
+                        <div class="buddy-card" style="text-align: center;">
+                            <div id="examCountdown" style="font-size: 1.5rem; font-weight: 700; color: #76b900;">--
+                            </div>
+                            <div style="font-size: 0.75rem; color: #8b949e;">until exam day</div>
+                            <div style="margin-top: 0.75rem; font-size: 0.8rem;">
+                                <div>📚 Estimated study time left: <span id="studyTimeLeft"
+                                        style="color: #58a6ff;">--</span></div>
+                                <div style="margin-top: 0.25rem;">🎯 Passing score: <span
+                                        style="color: #76b900;">~70%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buddy-section">
+                        <h3>💡 Exam Day Tips</h3>
+                        <div class="buddy-card tip">
+                            <h4>Before the Exam</h4>
+                            <p>✅ Get 8 hours of sleep<br>✅ Light breakfast<br>✅ Arrive 15 min early<br>✅ Have valid ID
+                                ready</p>
+                        </div>
+                        <div class="buddy-card tip">
+                            <h4>During the Exam</h4>
+                            <p>⏱️ 1.6 min/question average<br>🚩 Flag and skip hard ones<br>📖 Read ALL options<br>❌
+                                Eliminate wrong answers first</p>
+                        </div>
+                        <div class="buddy-card warning">
+                            <h4>Common Traps</h4>
+                            <p>⚠️ "BEST" vs "correct" answer<br>⚠️ "FIRST" step vs any step<br>⚠️ Negatives like "NOT"
+                                or "EXCEPT"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="buddy-toggle" id="buddyToggle" onclick="toggleBuddy()">📚 Study Buddy</button>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal" onclick="if(event.target===this)closeSettings()">
+        <div class="modal">
+            <h3>⚙️ Settings</h3>
+            <div class="modal-section">
+                <label>📅 Start Date</label>
+                <input type="date" id="startDateInput" onchange="updateDates()">
+            </div>
+            <div class="modal-section">
+                <label>📅 Exam Date</label>
+                <input type="date" id="examDateInput" onchange="updateDates()">
+            </div>
+            <div class="modal-section">
+                <label>🔥 Current Streak: <span id="streakDisplay">0</span> days</label>
+            </div>
+            <div class="modal-section">
+                <label>⌨️ Keyboard Shortcuts</label>
+                <div style="font-size:0.8rem;color:#8b949e;margin-top:0.5rem;">
+                    <kbd class="kbd">S</kbd> Toggle Study Buddy &nbsp;
+                    <kbd class="kbd">P</kbd> Pomodoro Start/Pause &nbsp;
+                    <kbd class="kbd">?</kbd> Show shortcuts
+                </div>
+            </div>
+            <div class="modal-btns">
+                <button class="btn-danger" onclick="resetAllProgress()">🗑️ Reset All</button>
+                <button class="btn-secondary" onclick="closeSettings()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
+    <script src="flashcards.js"></script>
+    <script>
+        // Init Flashcards when loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initFlashcards();
+        });
+
+        // Update service worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('SW Registered'))
+                    .catch(err => console.log('SW Error:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
