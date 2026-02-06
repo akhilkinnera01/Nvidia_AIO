@@ -827,6 +827,106 @@
             color: #f0883e;
         }
 
+        /* Materials Section */
+        .materials-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #30363d;
+        }
+
+        .materials-header {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #76b900;
+            margin-bottom: 0.6rem;
+        }
+
+        .materials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.55rem 0.65rem;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .material-item:hover {
+            border-color: #58a6ff;
+            background: rgba(88, 166, 255, 0.05);
+            transform: translateX(3px);
+        }
+
+        .material-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .material-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .material-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 0.15rem;
+            line-height: 1.3;
+        }
+
+        .material-note {
+            font-size: 0.72rem;
+            color: #8b949e;
+            line-height: 1.35;
+        }
+
+        .material-type-badge {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .material-type-badge.doc {
+            background: rgba(31, 111, 235, 0.15);
+            color: #58a6ff;
+        }
+
+        .material-type-badge.course {
+            background: rgba(118, 185, 0, 0.15);
+            color: #9be22d;
+        }
+
+        .material-type-badge.video {
+            background: rgba(163, 113, 247, 0.15);
+            color: #a371f7;
+        }
+
+        .material-type-badge.lab {
+            background: rgba(240, 136, 62, 0.15);
+            color: #f0883e;
+        }
+
+        .material-type-badge.guide {
+            background: rgba(248, 81, 73, 0.15);
+            color: #f85149;
+        }
+
         .collapse-all-btn {
             background: #30363d;
             border: none;

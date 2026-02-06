@@ -5,6 +5,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Start Coursera course - Module 1", detail: "AI Infrastructure and Operations Fundamentals" },
             { type: "lab", title: "Set up Ubuntu VM (optional)", detail: "Install VirtualBox/UTM/Multipass, create Ubuntu 22.04 VM" },
             { type: "lab", title: "Install Docker on VM or local", detail: "Run: docker run hello-world to verify" }
+        ],
+        materials: [
+            { title: "NCP-AIO Official Study Guide (PDF)", url: "https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web", type: "guide", note: "READ FIRST — Contains exact exam domains, weights, and objectives" },
+            { title: "NVIDIA Certification Exam Page", url: "https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/", type: "guide", note: "Exam overview, prerequisites, registration" },
+            { title: "Coursera: AI Infrastructure & Operations Fundamentals", url: "https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals", type: "course", note: "NVIDIA's official course aligned to NCP-AIO — audit for free" },
+            { title: "Docker Installation Guide", url: "https://docs.docker.com/engine/install/ubuntu/", type: "doc", note: "Official Docker install steps for Ubuntu" }
         ]
     },
     2: {
@@ -13,6 +19,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Study DGX system architecture", detail: "Understand DGX A100/H100, GPU interconnects" },
             { type: "lab", title: "Google Colab: Run nvidia-smi", detail: "Open Colab, run !nvidia-smi, understand output fields" },
             { type: "lab", title: "Explore GPU info in Colab", detail: "Check CUDA version, memory, GPU utilization" }
+        ],
+        materials: [
+            { title: "Coursera: AI Infrastructure & Operations Fundamentals", url: "https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals", type: "course", note: "Continue Modules 1-2: GPU architecture, data center design" },
+            { title: "NVIDIA DGX Systems Documentation", url: "https://docs.nvidia.com/dgx/", type: "doc", note: "DGX A100/H100 hardware specs, topology, NVLink/NVSwitch" },
+            { title: "DGX A100 User Guide", url: "https://docs.nvidia.com/dgx/dgxa100-user-guide/", type: "doc", note: "8x A100 GPUs, 6x NVSwitch, 600GB/s NVLink bandwidth" },
+            { title: "Google Colab (Free GPU)", url: "https://colab.research.google.com/", type: "lab", note: "Free T4 GPU — run nvidia-smi, explore CUDA" }
         ]
     },
     3: {
@@ -21,6 +33,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Study Base View interface components", detail: "Dashboard, node views, alerts, reports" },
             { type: "theory", title: "Understand BCM cluster monitoring", detail: "Health checks, utilization metrics, job tracking" },
             { type: "theory", title: "Watch BCM YouTube walkthrough", detail: "Search 'NVIDIA Base Command Manager demo'" }
+        ],
+        materials: [
+            { title: "Base Command Manager Documentation", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "PRIMARY RESOURCE — Architecture, cmsh commands, node management. BCM = 31% of exam!" },
+            { title: "YouTube: BCM Tutorials", url: "https://www.youtube.com/results?search_query=NVIDIA+Base+Command+Manager+demo", type: "video", note: "Search for cluster provisioning demos and cmsh walkthroughs" },
+            { title: "NVIDIA Developer YouTube", url: "https://www.youtube.com/@NVIDIADeveloper", type: "video", note: "Official channel — look for BCM and infrastructure talks" }
         ]
     },
     4: {
@@ -29,6 +46,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn BCM RBAC model", detail: "Admin, Operator, Viewer roles and permissions" },
             { type: "theory", title: "Understand software image management", detail: "Image creation, deployment, versioning" },
             { type: "review", title: "Create flashcards for BCM commands", detail: "cmsh commands: device, partition, category, etc." }
+        ],
+        materials: [
+            { title: "BCM Docs: Node Management", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "Focus on node categories, provisioning, cmsh device/partition/category commands" },
+            { title: "BCM Docs: User & RBAC", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "Focus on RBAC model — Admin, Operator, Viewer roles and permissions" }
         ]
     },
     5: {
@@ -37,6 +58,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn firmware update workflows", detail: "Patch management, driver updates, image sync" },
             { type: "lab", title: "Practice network commands on VM", detail: "ip addr, nmcli, understand bonding concepts" },
             { type: "theory", title: "Coursera - Complete Week 1 content", detail: "Finish first week modules and quizzes" }
+        ],
+        materials: [
+            { title: "BCM Docs: Networking", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "Network configuration, InfiniBand, Ethernet, DPU integration" },
+            { title: "NVIDIA Driver Installation Notes", url: "https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/", type: "doc", note: "Driver management, version compatibility, firmware updates" },
+            { title: "Coursera: AI Infrastructure (Week 1)", url: "https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals", type: "course", note: "Complete Week 1 modules and quizzes" }
         ]
     },
     6: {
@@ -45,6 +71,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn node states in BCM", detail: "UP, DOWN, DRAIN, IDLE, MIXED, ALLOCATED" },
             { type: "theory", title: "Understand BCM reporting features", detail: "Usage reports, health dashboards, alerts" },
             { type: "review", title: "Create troubleshooting decision tree", detail: "Document: symptom → diagnostic steps → resolution" }
+        ],
+        materials: [
+            { title: "BCM Docs: Troubleshooting", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "Node state management, job failures, resource bottlenecks, alert configuration" },
+            { title: "NVIDIA Xid Errors Reference", url: "https://docs.nvidia.com/deploy/xid-errors/", type: "doc", note: "GPU error codes — Xid 31 (page fault), 48 (ECC), 79 (GPU off bus). Memorize key ones!" }
         ]
     },
     7: {
@@ -53,6 +83,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Introduction to Mission Control toolkit", detail: "Understand deployment automation tools" },
             { type: "review", title: "Take Coursera Week 1-2 quizzes", detail: "Test your knowledge, note weak areas" },
             { type: "review", title: "Write 1-page BCM summary", detail: "Architecture, key commands, troubleshooting" }
+        ],
+        materials: [
+            { title: "NCP-AIO Study Guide (PDF)", url: "https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web", type: "guide", note: "Re-read Domain 1 (Installation & Deployment) objectives — verify you covered everything" },
+            { title: "Coursera Quizzes", url: "https://www.coursera.org/learn/ai-infrastructure-and-operations-fundamentals", type: "course", note: "Take Week 1-2 quizzes to identify gaps" },
+            { title: "NVIDIA DeepOps (GitHub)", url: "https://github.com/NVIDIA/deepops", type: "doc", note: "Ansible-based deployment tool — understand concepts even if BCM has superseded it" }
         ]
     },
     8: {
@@ -61,6 +96,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Read GPU Operator installation docs", detail: "docs.nvidia.com/datacenter/cloud-native/gpu-operator" },
             { type: "lab", title: "Install Minikube on local machine", detail: "brew install minikube (Mac) or equivalent" },
             { type: "lab", title: "Add NVIDIA Helm repo", detail: "helm repo add nvidia https://nvidia.github.io/gpu-operator" }
+        ],
+        materials: [
+            { title: "NVIDIA GPU Operator Documentation", url: "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/", type: "doc", note: "Components: driver daemonset, container toolkit, device plugin, DCGM exporter, MIG manager, GPU Feature Discovery" },
+            { title: "GPU Operator GitHub", url: "https://github.com/NVIDIA/gpu-operator", type: "doc", note: "Helm charts, deployment examples, and issue tracker" },
+            { title: "K8s Device Plugins", url: "https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/", type: "doc", note: "How the NVIDIA device plugin exposes nvidia.com/gpu to the K8s scheduler" },
+            { title: "Kubernetes Concepts Overview", url: "https://kubernetes.io/docs/concepts/", type: "doc", note: "Core K8s: pods, deployments, namespaces, services — foundational knowledge" }
         ]
     },
     9: {
@@ -69,6 +110,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn ClusterPolicy CRD", detail: "GPU Operator configuration custom resource" },
             { type: "lab", title: "Create namespace and RBAC rules", detail: "kubectl create ns gpu-test, apply RBAC yaml" },
             { type: "lab", title: "Write GPU pod spec (syntax practice)", detail: "Create yaml with nvidia.com/gpu: 1 resource" }
+        ],
+        materials: [
+            { title: "K8s: Scheduling GPUs", url: "https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/", type: "doc", note: "How K8s schedules GPU workloads via device plugins and nvidia.com/gpu extended resources" },
+            { title: "K8s: RBAC Authorization", url: "https://kubernetes.io/docs/reference/access-authn-authz/rbac/", type: "doc", note: "Roles, ClusterRoles, RoleBindings for controlling GPU resource access" },
+            { title: "K8s: Resource Management", url: "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/", type: "doc", note: "Resource requests/limits in pod specs including nvidia.com/gpu" },
+            { title: "GPU Operator: ClusterPolicy CRD", url: "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/", type: "doc", note: "ClusterPolicy custom resource for configuring GPU Operator components" }
         ]
     },
     10: {
@@ -77,6 +124,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Read Slurm quickstart guide", detail: "slurm.schedmd.com/quickstart.html" },
             { type: "lab", title: "Install Slurm on VM", detail: "apt install slurmctld slurmd munge" },
             { type: "lab", title: "Create basic slurm.conf", detail: "Configure ClusterName, ControlMachine, partitions" }
+        ],
+        materials: [
+            { title: "Slurm Quick Start Guide", url: "https://slurm.schedmd.com/quickstart.html", type: "doc", note: "Architecture overview: slurmctld, slurmd, slurmdbd, basic concepts" },
+            { title: "Slurm Admin Quick Start", url: "https://slurm.schedmd.com/quickstart_admin.html", type: "doc", note: "Step-by-step: install slurmctld, slurmd, munge auth, create slurm.conf" },
+            { title: "Slurm Configuration Tool", url: "https://slurm.schedmd.com/configurator.html", type: "lab", note: "Interactive web tool to generate slurm.conf — great for learning all parameters" },
+            { title: "Slurm Full Documentation", url: "https://slurm.schedmd.com/documentation.html", type: "doc", note: "Master index of all Slurm docs — bookmark this" }
         ]
     },
     11: {
@@ -85,6 +138,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Understand gres.conf syntax", detail: "Name, Type, File, Count, AutoDetect options" },
             { type: "lab", title: "Configure gres.conf for GPUs", detail: "Name=gpu Type=tesla File=/dev/nvidia[0-1]" },
             { type: "lab", title: "Add GresTypes to slurm.conf", detail: "GresTypes=gpu, add Gres to NodeName lines" }
+        ],
+        materials: [
+            { title: "Slurm GRES (GPU) Documentation", url: "https://slurm.schedmd.com/gres.html", type: "doc", note: "CRITICAL — gres.conf syntax, AutoDetect=nvml, --gres=gpu:N, MIG device config, GPU binding" },
+            { title: "Slurm slurm.conf Reference", url: "https://slurm.schedmd.com/slurm.conf.html", type: "doc", note: "GresTypes=gpu parameter, NodeName Gres fields, partition config" }
         ]
     },
     12: {
@@ -93,6 +150,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Study backfill scheduler", detail: "Understand job scheduling algorithms, preemption" },
             { type: "lab", title: "Submit test jobs with sbatch", detail: "Create job script, submit, check with squeue" },
             { type: "lab", title: "Practice scontrol commands", detail: "scontrol show job, scontrol update, node management" }
+        ],
+        materials: [
+            { title: "Slurm sbatch Reference", url: "https://slurm.schedmd.com/sbatch.html", type: "doc", note: "Batch job submission: --gres, --partition, --nodes, --time, --output" },
+            { title: "Slurm srun Reference", url: "https://slurm.schedmd.com/srun.html", type: "doc", note: "Interactive jobs: srun --gres=gpu:1 --pty bash" },
+            { title: "Slurm scontrol Reference", url: "https://slurm.schedmd.com/scontrol.html", type: "doc", note: "Admin commands: show job, update NodeName State=DRAIN, show partition" },
+            { title: "Slurm Scheduling Config", url: "https://slurm.schedmd.com/sched_config.html", type: "doc", note: "Backfill scheduling algorithm, priority factors, preemption, fair-share" }
         ]
     },
     13: {
@@ -101,6 +164,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn Run:ai installation on K8s", detail: "Helm chart deployment process" },
             { type: "theory", title: "Understand projects and quotas", detail: "Resource allocation, fairness policies" },
             { type: "theory", title: "Watch Run:ai demo videos", detail: "YouTube: Run:ai platform walkthrough" }
+        ],
+        materials: [
+            { title: "Run:ai Documentation", url: "https://docs.run.ai/", type: "doc", note: "GPU orchestration platform: projects, quotas, fractional GPUs, fairness scheduling, CLI" },
+            { title: "Run:ai Architecture Overview", url: "https://docs.run.ai/", type: "doc", note: "Control plane, K8s integration, scheduler, GPU virtualization" }
         ]
     },
     14: {
@@ -109,6 +176,11 @@ const STUDY_DATA = {
             { type: "review", title: "Review Slurm commands", detail: "Create cheat sheet of all key commands" },
             { type: "theory", title: "Introduction to MIG technology", detail: "What is MIG, supported GPUs, use cases" },
             { type: "lab", title: "Set up Vast.ai account", detail: "Create account, add $5 credit for Week 3" }
+        ],
+        materials: [
+            { title: "MIG User Guide (Intro)", url: "https://docs.nvidia.com/datacenter/tesla/mig-user-guide/", type: "doc", note: "Start with Overview section — what MIG is, supported GPUs (A100, A30, H100), isolation model" },
+            { title: "K8s Device Plugin: MIG Strategies", url: "https://github.com/NVIDIA/k8s-device-plugin", type: "doc", note: "MIG strategies: none, single, mixed — how MIG devices appear in K8s" },
+            { title: "Vast.ai (Cheap A100)", url: "https://vast.ai/", type: "lab", note: "Create account, add credit — you'll need an A100 for MIG labs in Week 3" }
         ]
     },
     15: {
@@ -117,6 +189,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Understand GI and CI concepts", detail: "GPU Instances vs Compute Instances" },
             { type: "lab", title: "Rent Vast.ai A100, enable MIG", detail: "nvidia-smi -i 0 -mig 1, then nvidia-smi mig -lgip" },
             { type: "lab", title: "Create MIG instances", detail: "nvidia-smi mig -cgi 9,19,19,19 -C" }
+        ],
+        materials: [
+            { title: "MIG User Guide (Full)", url: "https://docs.nvidia.com/datacenter/tesla/mig-user-guide/", type: "doc", note: "MEMORIZE: nvidia-smi mig -lgip, -cgi, -cci, -lgi, -dgi, -dci. Know A100 profiles: 1g.5gb(19), 2g.10gb(14), 3g.20gb(9), 4g.20gb(5), 7g.40gb(0)" },
+            { title: "YouTube: MIG Tutorials", url: "https://www.youtube.com/results?search_query=nvidia+mig+tutorial+a100", type: "video", note: "Visual walkthroughs of MIG configuration on A100" }
         ]
     },
     16: {
@@ -125,6 +201,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn MIG with GPU Operator", detail: "MIG strategies: single, mixed" },
             { type: "lab", title: "Create/destroy MIG instances", detail: "Practice different profile combinations" },
             { type: "lab", title: "Run workload on MIG device", detail: "CUDA_VISIBLE_DEVICES=MIG-xxx python test.py" }
+        ],
+        materials: [
+            { title: "MIG User Guide: Slurm Integration", url: "https://docs.nvidia.com/datacenter/tesla/mig-user-guide/", type: "doc", note: "Configuring MIG devices in gres.conf for Slurm scheduling" },
+            { title: "GPU Operator: MIG Support", url: "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/", type: "doc", note: "MIG strategies (single, mixed) in ClusterPolicy, MIG manager component" },
+            { title: "Slurm GRES: MIG Devices", url: "https://slurm.schedmd.com/gres.html", type: "doc", note: "How MIG instances appear as GRES resources in Slurm" }
         ]
     },
     17: {
@@ -133,6 +214,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn DOCA SDK basics", detail: "Programming model, services framework" },
             { type: "theory", title: "Understand DPU modes", detail: "Embedded host, separated host configurations" },
             { type: "theory", title: "Study common DPU troubleshooting", detail: "Firmware issues, network config problems" }
+        ],
+        materials: [
+            { title: "DOCA SDK Documentation", url: "https://docs.nvidia.com/doca/sdk/", type: "doc", note: "BlueField DPU programming: DOCA Flow, networking, storage offload, security" },
+            { title: "DOCA Developer Portal", url: "https://developer.nvidia.com/networking/doca", type: "doc", note: "SDK downloads, getting started guides, DPU architecture overview" },
+            { title: "BlueField DPU Documentation", url: "https://docs.nvidia.com/doca/", type: "doc", note: "DPU modes (embedded vs separated host), BFB installation, firmware" }
         ]
     },
     18: {
@@ -141,6 +227,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Understand NGC authentication", detail: "API key generation, docker login" },
             { type: "lab", title: "Login to NGC registry", detail: "docker login nvcr.io with API key" },
             { type: "lab", title: "Pull and run PyTorch container", detail: "docker pull nvcr.io/nvidia/pytorch:24.01-py3" }
+        ],
+        materials: [
+            { title: "NGC Container Catalog", url: "https://catalog.ngc.nvidia.com/", type: "doc", note: "Browse containers: PyTorch, TensorFlow, TensorRT, Triton, RAPIDS. Know naming: nvcr.io/nvidia/<name>:<tag>" },
+            { title: "NGC Platform Documentation", url: "https://docs.nvidia.com/ngc/", type: "doc", note: "Organization management, API key generation, team management, private registries" },
+            { title: "NVIDIA Container Toolkit", url: "https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/", type: "doc", note: "nvidia-container-runtime config, daemon.json setup, NVIDIA_VISIBLE_DEVICES env var" }
         ]
     },
     19: {
@@ -149,6 +240,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn job script best practices", detail: "Environment variables, resource requests" },
             { type: "lab", title: "Submit training job via Slurm", detail: "sbatch --gres=gpu:1 train.sh" },
             { type: "lab", title: "Monitor GPU with nvidia-smi dmon", detail: "Watch utilization during training" }
+        ],
+        materials: [
+            { title: "Slurm sbatch Reference", url: "https://slurm.schedmd.com/sbatch.html", type: "doc", note: "Job script submission with --gres=gpu:N, --partition, --output" },
+            { title: "NCCL User Guide", url: "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html", type: "doc", note: "Multi-GPU collective ops: AllReduce, AllGather. Key env vars: NCCL_DEBUG=INFO" },
+            { title: "Run:ai: Workload Submission", url: "https://docs.run.ai/", type: "doc", note: "Training workloads via Run:ai CLI, GPU allocation, project quotas" }
         ]
     },
     20: {
@@ -157,6 +253,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn inference scaling strategies", detail: "Horizontal scaling, batching, concurrency" },
             { type: "lab", title: "Pull Triton container", detail: "docker pull nvcr.io/nvidia/tritonserver:24.01-py3" },
             { type: "lab", title: "Explore Triton model config", detail: "Understand config.pbtxt format" }
+        ],
+        materials: [
+            { title: "Triton Inference Server Documentation", url: "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/index.html", type: "doc", note: "Model repo structure, config.pbtxt, dynamic batching, instance groups, backends (TensorRT, ONNX, PyTorch)" },
+            { title: "Triton GitHub", url: "https://github.com/triton-inference-server/server", type: "doc", note: "Examples, model config templates, client libraries" },
+            { title: "K8s: Scheduling GPUs", url: "https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/", type: "doc", note: "How inference pods request GPU resources in K8s" }
         ]
     },
     21: {
@@ -165,6 +266,11 @@ const STUDY_DATA = {
             { type: "review", title: "Review NGC workflow", detail: "Auth → pull → run → monitor" },
             { type: "review", title: "Review DPU/DOCA concepts", detail: "Architecture, modes, troubleshooting" },
             { type: "review", title: "Practice questions on workloads", detail: "Slurm job submission, K8s deployments" }
+        ],
+        materials: [
+            { title: "NCP-AIO Study Guide (PDF)", url: "https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web", type: "guide", note: "Re-read Domain 2 (Admin) and Domain 3 (Workload) objectives — verify coverage" },
+            { title: "MIG User Guide (Review)", url: "https://docs.nvidia.com/datacenter/tesla/mig-user-guide/", type: "doc", note: "Quick review of all MIG commands and profiles" },
+            { title: "NGC Catalog (Review)", url: "https://catalog.ngc.nvidia.com/", type: "doc", note: "Review NGC workflow: API key → docker login nvcr.io → pull → run" }
         ]
     },
     22: {
@@ -173,6 +279,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn DCGM health monitoring", detail: "Health watches, diagnostic levels" },
             { type: "lab", title: "Install and run DCGM", detail: "dcgmi discovery -l, dcgmi diag -r 1" },
             { type: "lab", title: "Monitor with dcgmi dmon", detail: "Watch real-time GPU metrics" }
+        ],
+        materials: [
+            { title: "DCGM Documentation", url: "https://docs.nvidia.com/datacenter/dcgm/latest/", type: "doc", note: "Architecture, host engine, modules, field groups. Key commands: dcgmi discovery -l, diag -r 1/2/3, health -c, dmon" },
+            { title: "DCGM Exporter (GitHub)", url: "https://github.com/NVIDIA/dcgm-exporter", type: "doc", note: "Prometheus exporter for DCGM metrics in K8s — used by GPU Operator" }
         ]
     },
     23: {
@@ -181,6 +291,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn common Docker GPU issues", detail: "Driver mismatch, runtime config, visibility" },
             { type: "lab", title: "Simulate container GPU issue", detail: "Misconfigure daemon.json, debug and fix" },
             { type: "lab", title: "Practice docker logs troubleshooting", detail: "Identify and resolve GPU visibility issues" }
+        ],
+        materials: [
+            { title: "NVIDIA Container Toolkit", url: "https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/", type: "doc", note: "nvidia-container-runtime config, daemon.json, CDI, NVIDIA_VISIBLE_DEVICES, troubleshooting" },
+            { title: "GPU Operator Troubleshooting", url: "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/", type: "doc", note: "Pod stuck states, driver daemonset failures, device plugin issues" },
+            { title: "K8s: Debug Applications", url: "https://kubernetes.io/docs/tasks/debug/debug-application/", type: "doc", note: "kubectl describe pod, kubectl logs, common pod failures (Pending, CrashLoopBackOff)" }
         ]
     },
     24: {
@@ -189,6 +304,10 @@ const STUDY_DATA = {
             { type: "theory", title: "Understand NVLink/NVSwitch topology", detail: "Multi-GPU communication, bandwidth" },
             { type: "lab", title: "Check topology with nvidia-smi", detail: "nvidia-smi topo -m (on multi-GPU system)" },
             { type: "theory", title: "Learn Fabric Manager troubleshooting", detail: "Log analysis, connectivity issues" }
+        ],
+        materials: [
+            { title: "Fabric Manager User Guide", url: "https://docs.nvidia.com/datacenter/tesla/fabric-manager-user-guide/index.html", type: "doc", note: "NVSwitch management, GPU interconnect topology, service config, diagnostics, link health" },
+            { title: "nvidia-smi topo Documentation", url: "https://developer.nvidia.com/nvidia-system-management-interface", type: "doc", note: "nvidia-smi topo -m shows GPU connectivity matrix — NVLink vs PCIe paths" }
         ]
     },
     25: {
@@ -197,6 +316,12 @@ const STUDY_DATA = {
             { type: "theory", title: "Learn storage optimization for AI", detail: "I/O patterns, bottleneck identification" },
             { type: "theory", title: "Understand GPUDirect use cases", detail: "When to use vs staged transfers" },
             { type: "theory", title: "Study storage performance metrics", detail: "Throughput, latency, IOPS for AI workloads" }
+        ],
+        materials: [
+            { title: "GPUDirect RDMA", url: "https://docs.nvidia.com/cuda/gpudirect-rdma/index.html", type: "doc", note: "Direct GPU↔NIC data transfer bypassing CPU. Requires nvidia-peermem module, same PCIe root" },
+            { title: "GPUDirect Storage", url: "https://docs.nvidia.com/gpudirect-storage/", type: "doc", note: "Direct NVMe↔GPU data path, bypassing CPU bounce buffers. Critical for AI data pipelines" },
+            { title: "NCCL User Guide", url: "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html", type: "doc", note: "Transport layers: NVLink, PCIe, InfiniBand, RoCE. NCCL env vars for tuning" },
+            { title: "Magnum IO Overview", url: "https://developer.nvidia.com/magnum-io", type: "doc", note: "Umbrella for GPUDirect RDMA + Storage + NCCL + networking optimizations" }
         ]
     },
     26: {
@@ -205,6 +330,11 @@ const STUDY_DATA = {
             { type: "theory", title: "Study NGC troubleshooting", detail: "Auth failures, pull errors, runtime issues" },
             { type: "lab", title: "Simulate NGC auth failure", detail: "Test with wrong credentials, debug" },
             { type: "lab", title: "Practice recovery procedures", detail: "Document and test fix workflows" }
+        ],
+        materials: [
+            { title: "BCM Docs: Troubleshooting", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "Node provisioning failures, job scheduling issues, alert debugging" },
+            { title: "NGC Platform Docs", url: "https://docs.nvidia.com/ngc/", type: "doc", note: "Auth failures (wrong API key), pull errors (image not found), runtime issues" },
+            { title: "Xid Errors Reference", url: "https://docs.nvidia.com/deploy/xid-errors/", type: "doc", note: "Review critical Xid codes: 13, 31, 48, 79, 119" }
         ]
     },
     27: {
@@ -213,6 +343,12 @@ const STUDY_DATA = {
             { type: "review", title: "Review K8s GPU Operator", detail: "Installation, ClusterPolicy, device plugin" },
             { type: "review", title: "Review Slurm administration", detail: "All commands, gres.conf, job management" },
             { type: "review", title: "Take Udemy practice test #1", detail: "60-70 questions, note weak areas" }
+        ],
+        materials: [
+            { title: "Udemy: NCP-AIO Practice Exams", url: "https://www.udemy.com/course/nvidia-ncp-aio-exam/", type: "course", note: "Practice test #1 — 60-70 questions, note every wrong answer topic" },
+            { title: "NCP-AIO Study Guide (PDF)", url: "https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web", type: "guide", note: "Review Domain 1 (Installation 31%) and Domain 2 (Admin 23%) objectives" },
+            { title: "BCM Docs (Final Review)", url: "https://docs.nvidia.com/base-command-manager/", type: "doc", note: "Last pass on BCM — it's 31% of the exam" },
+            { title: "GPU Operator Docs (Final Review)", url: "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/", type: "doc", note: "Components, ClusterPolicy, installation, MIG support" }
         ]
     },
     28: {
@@ -221,6 +357,12 @@ const STUDY_DATA = {
             { type: "review", title: "Review DCGM and monitoring", detail: "Commands, health checks, diagnostics" },
             { type: "review", title: "Review troubleshooting workflows", detail: "All decision trees you created" },
             { type: "review", title: "Take Udemy practice test #2", detail: "Focus on troubleshooting scenarios" }
+        ],
+        materials: [
+            { title: "Udemy: NCP-AIO Practice Exams", url: "https://www.udemy.com/course/nvidia-ncp-aio-exam/", type: "course", note: "Practice test #2 — focus on troubleshooting scenarios" },
+            { title: "DCGM Docs (Review)", url: "https://docs.nvidia.com/datacenter/dcgm/latest/", type: "doc", note: "Review dcgmi commands, health watches, diagnostic levels" },
+            { title: "MIG User Guide (Review)", url: "https://docs.nvidia.com/datacenter/tesla/mig-user-guide/", type: "doc", note: "Quick review of all MIG commands and profiles" },
+            { title: "Xid Errors Reference", url: "https://docs.nvidia.com/deploy/xid-errors/", type: "doc", note: "Final review of troubleshooting error codes" }
         ]
     },
     29: {
@@ -229,6 +371,10 @@ const STUDY_DATA = {
             { type: "review", title: "Re-read relevant documentation", detail: "Focus only on weak areas" },
             { type: "review", title: "Create final 1-page cheat sheet", detail: "Key commands, concepts for memory" },
             { type: "review", title: "Light practice questions", detail: "10-15 questions on weak topics only" }
+        ],
+        materials: [
+            { title: "NCP-AIO Study Guide (PDF)", url: "https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web", type: "guide", note: "Go through every domain objective — check off what you know, deep-dive what you don't" },
+            { title: "Your Cheat Sheet", url: "cheatsheet.html", type: "guide", note: "Create your final 1-page cheat sheet from all notes" }
         ]
     },
     30: {
@@ -237,6 +383,10 @@ const STUDY_DATA = {
             { type: "review", title: "Prepare exam environment", detail: "Quiet room, stable internet, webcam, valid ID" },
             { type: "review", title: "Test Certiverse platform", detail: "Check system requirements, do test run" },
             { type: "review", title: "Early bedtime!", detail: "Rest well - you've prepared thoroughly" }
+        ],
+        materials: [
+            { title: "NVIDIA Certification Portal", url: "https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/", type: "guide", note: "Verify exam time, check system requirements, do platform test run" },
+            { title: "NCP-AIO Study Guide (PDF)", url: "https://nvdam.widen.net/s/p9ssxqwvn6/nvt-certification-exam-study-guide-ncp-ai-operations-3770900-r2-web", type: "guide", note: "Very light skim of domain weights only — DO NOT cram new material" }
         ]
     },
     31: {
@@ -245,6 +395,9 @@ const STUDY_DATA = {
             { type: "review", title: "Start exam on time", detail: "120 minutes, 70-75 questions" },
             { type: "review", title: "Read each question carefully", detail: "~1.5 min per question, flag difficult ones" },
             { type: "review", title: "PASS THE EXAM! 🎉", detail: "You've got this, Akhil!" }
+        ],
+        materials: [
+            { title: "NVIDIA Certification Portal", url: "https://www.nvidia.com/en-us/learn/certification/ai-operations-professional/", type: "guide", note: "Exam link — 120 min, 70-75 questions. Target ~70% to pass. You've got this!" }
         ]
     }
 };
@@ -396,7 +549,22 @@ function renderDayCard(dayNum) {
                         <div class="subtask-content"><div class="subtask-title">${task.title}</div><div class="subtask-detail">${task.detail}</div></div>
                         <span class="subtask-type ${task.type}">${task.type}</span>
                     </li>`;
-    }).join('')}</ul></div>
+    }).join('')}</ul>${data.materials && data.materials.length > 0 ? `
+                    <div class="materials-section">
+                        <div class="materials-header" onclick="event.stopPropagation()">📚 Study Materials & Resources (${data.materials.length})</div>
+                        <div class="materials-list">${data.materials.map(m => {
+        const typeIcons = { doc: '📄', course: '🎓', video: '🎬', lab: '🔬', guide: '📋' };
+        const icon = typeIcons[m.type] || '🔗';
+        return `<a href="${m.url}" target="_blank" rel="noopener noreferrer" class="material-item" onclick="event.stopPropagation()">
+                            <span class="material-icon">${icon}</span>
+                            <div class="material-info">
+                                <div class="material-title">${m.title}</div>
+                                <div class="material-note">${m.note}</div>
+                            </div>
+                            <span class="material-type-badge ${m.type}">${m.type}</span>
+                        </a>`;
+    }).join('')}</div>
+                    </div>` : ''}</div>
             </div>`;
 }
 
